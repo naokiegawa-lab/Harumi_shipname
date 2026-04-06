@@ -1,0 +1,67 @@
+name: 晴海客船ターミナル スケジュールスクレイプ
+
+on:
+  # 6時間ごとに自動実行（UTC 0/6/12/18時 = JST 9/15/21/3時）
+  schedule:
+    - cron: "0 0,6,12,18 * * *"
+
+  # 手動実行ボタン
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    permissions:
+      contents: write  # data/scraped.json をコミットするため
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 依存関係インストール
+        run: npm ci
+
+      - name: Playwright ブラウザインストール
+        run: npx playwright install chromium --with-deps
+
+      - name: スクレイピング実行
+        id: scrape
+        run: node scripts/scrape.mjs
+        continue-on-error: true  # スクレイプ失敗でもコミットは試みる
+
+      - name: デバッグスクリーンショットをアーティファクトに保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshot
+          path: scripts/debug-screenshot.png
+          if-no-files-found: ignore
+
+      - name: scraped.json に変更があればコミット＆プッシュ
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/scraped.json
+          if git diff --cached --quiet; then
+            echo "✅ 変更なし。スキップします。"
+          else
+            git commit -m "chore: スケジュールデータを自動更新 [skip ci]
+
+            更新日時: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+            スクレイプ結果: ${{ steps.scrape.outcome }}"
+            git push
+          fi
+
+      - name: Vercel キャッシュ再検証（deploy hook経由）
+        if: env.VERCEL_DEPLOY_HOOK_URL != ''
+        run: curl -X POST "$VERCEL_DEPLOY_HOOK_URL"
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}

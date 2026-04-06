@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PortArrival, april2026Schedule } from "@/data/schedule";
+import { PortArrival } from "@/data/schedule";
 
 const TERMINAL_COLORS: Record<PortArrival["terminal"], { bg: string; dot: string; border: string }> = {
   "晴海客船ターミナル": {
@@ -30,7 +30,11 @@ function toDateStr(year: number, month: number, day: number) {
   return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
 
-export default function ScheduleCalendar() {
+type Props = {
+  arrivals: PortArrival[];
+};
+
+export default function ScheduleCalendar({ arrivals }: Props) {
   const today = new Date("2026-04-06");
   const [selectedDate, setSelectedDate] = useState<string>("2026-04-06");
 
@@ -41,7 +45,7 @@ export default function ScheduleCalendar() {
 
   // Build map: dateStr -> arrivals
   const arrivalMap: Record<string, PortArrival[]> = {};
-  for (const arrival of april2026Schedule) {
+  for (const arrival of arrivals) {
     // Mark every day a ship is in port
     const start = new Date(arrival.arrivalDate);
     const end = new Date(arrival.departureDate);

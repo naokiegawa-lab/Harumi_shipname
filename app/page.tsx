@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { ships } from "@/data/ships";
 import ShipCard from "@/components/ShipCard";
+import TodayDate from "@/components/TodayDate";
 
 export default function HomePage() {
   const docked = ships.filter((s) => s.status === "接岸中").length;
@@ -42,15 +44,9 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-slate-900 mb-2">
             本日の接岸船舶
           </h2>
-          <p className="text-slate-500 text-sm">
-            {new Date().toLocaleDateString("ja-JP", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              weekday: "long",
-            })}{" "}
-            現在
-          </p>
+          <Suspense fallback={<p className="text-slate-400 text-sm">読み込み中...</p>}>
+            <TodayDate />
+          </Suspense>
         </section>
 
         {/* Stats */}
