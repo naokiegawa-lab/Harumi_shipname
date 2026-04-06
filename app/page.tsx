@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ships } from "@/data/ships";
 import ShipCard from "@/components/ShipCard";
 
@@ -20,9 +21,17 @@ export default function HomePage() {
               <p className="text-xs text-slate-400">接岸船舶情報システム</p>
             </div>
           </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-xs text-slate-500 hidden sm:inline">リアルタイム更新中</span>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/schedule"
+              className="text-xs font-medium text-sky-600 hover:text-sky-700 hidden sm:inline"
+            >
+              📅 入港カレンダー
+            </Link>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs text-slate-500 hidden sm:inline">リアルタイム更新中</span>
+            </div>
           </div>
         </div>
       </header>
@@ -49,6 +58,20 @@ export default function HomePage() {
           <StatCard label="接岸中" value={docked} color="emerald" />
           <StatCard label="出港準備中" value={preparing} color="amber" />
           <StatCard label="停泊中" value={anchored} color="sky" />
+        </section>
+
+        {/* Calendar banner */}
+        <section className="mb-8">
+          <Link
+            href="/schedule"
+            className="flex items-center justify-between bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-2xl px-6 py-4 hover:from-sky-600 hover:to-blue-700 transition-all shadow-sm group"
+          >
+            <div>
+              <p className="font-bold text-base">📅 2026年4月 入港カレンダー</p>
+              <p className="text-sky-100 text-xs mt-0.5">東京港の今月の全入港スケジュールをカレンダーで確認</p>
+            </div>
+            <span className="text-sky-200 group-hover:translate-x-1 transition-transform text-lg">→</span>
+          </Link>
         </section>
 
         {/* Ship grid */}
