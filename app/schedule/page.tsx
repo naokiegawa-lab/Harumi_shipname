@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import Link from "next/link";
+import { connection } from "next/server";
 import type { Metadata } from "next";
 import { getScheduleData } from "@/lib/getScheduleData";
 import ScheduleCalendar from "@/components/ScheduleCalendar";
@@ -8,35 +10,7 @@ export const metadata: Metadata = {
   description: "2026年4月の東京港（晴海・東京国際クルーズターミナル）入港予定カレンダー",
 };
 
-export default async function SchedulePage() {
-  const data = await getScheduleData();
-
-  const harumi = data.arrivals.filter(
-    (a) => a.terminal === "晴海客船ターミナル"
-  ).length;
-  const international = data.arrivals.filter(
-    (a) => a.terminal === "東京国際クルーズターミナル"
-  ).length;
-
-  const lastUpdatedStr = data.lastUpdated
-    ? new Date(data.lastUpdated).toLocaleString("ja-JP", {
-        timeZone: "Asia/Tokyo",
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    : null;
-
-  const sourceLabel: Record<typeof data.source, { label: string; color: string }> = {
-    scraper:       { label: "自動取得（最新）", color: "text-emerald-600" },
-    scraper_empty: { label: "自動取得（データなし）", color: "text-amber-600" },
-    manual:        { label: "手動データ", color: "text-slate-500" },
-    fallback:      { label: "静的データ（フォールバック）", color: "text-slate-400" },
-  };
-  const src = sourceLabel[data.source] ?? sourceLabel.fallback;
-
+export default function SchedulePage() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -65,30 +39,11 @@ export default async function SchedulePage() {
           <h1 className="text-3xl font-bold text-slate-900 mb-1">
             入港予定カレンダー
           </h1>
-          <div className="flex flex-wrap items-center gap-3 mt-2">
-            <p className="text-slate-500 text-sm">
-              2026年4月 — 東京港（晴海・有明）への入港スケジュール
-            </p>
-            {lastUpdatedStr && (
-              <span className={`text-xs px-2 py-0.5 bg-slate-100 rounded-full ${src.color}`}>
-                {src.label} · {lastUpdatedStr} 更新
-              </span>
-            )}
-          </div>
         </section>
 
-        {/* Stats */}
-        <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 animate-fade-in-delay">
-          <StatCard label="4月の入港数" value={`${data.arrivals.length}件`} icon="🚢" color="slate" />
-          <StatCard label="晴海入港" value={`${harumi}件`} icon="⚓" color="sky" />
-          <StatCard label="国際ターミナル" value={`${international}件`} icon="🌍" color="violet" />
-          <StatCard label="最大旅客数" value="4,500名" icon="👥" color="amber" />
-        </section>
-
-        {/* Calendar */}
-        <section className="animate-fade-in-delay">
-          <ScheduleCalendar arrivals={data.arrivals} />
-        </section>
+        <Suspense fallback={<ScheduleSkeleton />}>
+          <ScheduleContent />
+        </Suspense>
       </main>
 
       {/* Footer */}
@@ -110,6 +65,81 @@ export default async function SchedulePage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+async function ScheduleContent() {
+  await connection();
+  const data = await getScheduleData();
+
+  const todayStr = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().split("T")[0];
+
+  const harumi = data.arrivals.filter(
+    (a) => a.terminal === "晴海客船ターミナル"
+  ).length;
+  const international = data.arrivals.filter(
+    (a) => a.terminal === "東京国際クルーズターミナル"
+  ).length;
+
+  const lastUpdatedStr = data.lastUpdated
+    ? new Date(data.lastUpdated).toLocaleString("ja-JP", {
+        timeZone: "Asia/Tokyo",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    : null;
+
+  const sourceLabel: Record<typeof data.source, { label: string; color: string }> = {
+    scraper:       { label: "自動取得（最新）", color: "text-emerald-600" },
+    scraper_empty: { label: "自動取得（データなし）", color: "text-amber-600" },
+    manual:        { label: "手動データ", color: "text-slate-500" },
+    fallback:      { label: "静的データ（フォールバック）", color: "text-slate-400" },
+  };
+  const src = sourceLabel[data.source] ?? sourceLabel.fallback;
+
+  return (
+    <>
+      <div className="flex flex-wrap items-center gap-3 -mt-4 mb-6">
+        <p className="text-slate-500 text-sm">
+          2026年4月 — 東京港（晴海・有明）への入港スケジュール
+        </p>
+        {lastUpdatedStr && (
+          <span className={`text-xs px-2 py-0.5 bg-slate-100 rounded-full ${src.color}`}>
+            {src.label} · {lastUpdatedStr} 更新
+          </span>
+        )}
+      </div>
+
+      {/* Stats */}
+      <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 animate-fade-in-delay">
+        <StatCard label="4月の入港数" value={`${data.arrivals.length}件`} icon="🚢" color="slate" />
+        <StatCard label="晴海入港" value={`${harumi}件`} icon="⚓" color="sky" />
+        <StatCard label="国際ターミナル" value={`${international}件`} icon="🌍" color="violet" />
+        <StatCard label="最大旅客数" value="4,500名" icon="👥" color="amber" />
+      </section>
+
+      {/* Calendar */}
+      <section className="animate-fade-in-delay">
+        <ScheduleCalendar arrivals={data.arrivals} todayStr={todayStr} />
+      </section>
+    </>
+  );
+}
+
+function ScheduleSkeleton() {
+  return (
+    <>
+      <div className="h-6 w-80 bg-slate-100 rounded animate-pulse -mt-4 mb-6" />
+      <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className="rounded-xl border border-slate-200 p-4 animate-pulse bg-slate-50 h-24" />
+        ))}
+      </section>
+      <div className="rounded-2xl border border-slate-200 h-96 animate-pulse bg-slate-50" />
+    </>
   );
 }
 

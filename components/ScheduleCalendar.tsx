@@ -34,11 +34,11 @@ function toDateStr(year: number, month: number, day: number) {
 
 type Props = {
   arrivals: PortArrival[];
+  todayStr: string;
 };
 
-export default function ScheduleCalendar({ arrivals }: Props) {
-  const today = new Date("2026-04-06");
-  const [selectedDate, setSelectedDate] = useState<string>("2026-04-06");
+export default function ScheduleCalendar({ arrivals, todayStr }: Props) {
+  const [selectedDate, setSelectedDate] = useState<string>(todayStr);
 
   const year = 2026;
   const month = 3; // April (0-indexed)
@@ -62,7 +62,6 @@ export default function ScheduleCalendar({ arrivals }: Props) {
   }
 
   const selectedArrivals = arrivalMap[selectedDate] ?? [];
-  const todayStr = today.toISOString().slice(0, 10);
 
   // Calendar cells
   const cells: (number | null)[] = [
