@@ -254,7 +254,14 @@ async function main() {
         const row = rows[i];
         const texts = row.map((c) => c.text);
 
-        // 列インデックスを推測
+        // Power BI が全セルを1つに連結している場合（texts.length === 1）
+        if (texts.length === 1) {
+          const entry = parseRowText(texts[0]);
+          if (entry) arrivals.push({ id: `scraped-${entry.arrivalDate}-${i}`, ...entry });
+          continue;
+        }
+
+        // 複数セルがある場合：列インデックスを推測
         const findIdx = (...keywords) => {
           for (const kw of keywords) {
             const idx = header.findIndex((h) => h.includes(kw));
@@ -293,7 +300,7 @@ async function main() {
           arrivalDate,
           departureDate: departureDate ?? arrivalDate,
           arrivalTime: arrivalTimeIdx >= 0 ? texts[arrivalTimeIdx] : undefined,
-          departureTime: departureDateIdx >= 0 ? texts[departureDateIdx] : undefined,
+          departureTime: departureTimeIdx >= 0 ? texts[departureTimeIdx] : undefined,
           grossTonnage: "",
           passengers: 0,
           length: "",
@@ -375,6 +382,66 @@ function parseFromPageText(text) {
     }
   }
   return arrivals;
+}
+
+/**
+ * Power BI の1セル連結行テキストをパース
+ * 例: "行の選択セレブリティ・ミレニアム2026/08/3005:302026/08/3016:30東京国際クルーズターミナル清水大阪"
+ */
+function parseRowText(rawText) {
+  // "行の選択" プレフィックスを除去
+  const text = rawText.replace(/^行の選択/, "").trim();
+  if (!text) return null;
+
+  // 日付を全て検索: 2026/MM/DD
+  const dateRe = /\d{4}\/\d{1,2}\/\d{1,2}/g;
+  const dates = [...text.matchAll(dateRe)];
+  if (dates.length === 0) return null;
+
+  // 最初の日付の前が船名
+  const shipName = text.slice(0, dates[0].index).trim();
+  if (!shipName || ["客船名", "すべて"].includes(shipName)) return null;
+
+  // 時刻を全て検索: HH:MM
+  const times = [...text.matchAll(/\d{2}:\d{2}/g)];
+
+  const arrivalDate = normalizeDate(dates[0][0]);
+  const departureDate = dates[1] ? normalizeDate(dates[1][0]) : arrivalDate;
+  const arrivalTime = times[0]?.[0];
+  const departureTime = times[1]?.[0];
+
+  // ターミナル名を特定
+  let terminal = "東京国際クルーズターミナル"; // デフォルト
+  if (text.includes("晴海客船ターミナル")) {
+    terminal = "晴海客船ターミナル";
+  } else if (text.includes("東京国際クルーズターミナル")) {
+    terminal = "東京国際クルーズターミナル";
+  } else {
+    // 既知ターミナル以外（離島港など）: 最後の日付以降のテキストから推測
+    const lastDate = dates[dates.length - 1];
+    const afterAll = text.slice(lastDate.index + lastDate[0].length)
+      .replace(/\d{2}:\d{2}/g, "").trim();
+    // 最初の区切り前が港名
+    const portMatch = afterAll.match(/^([^\s]+)/);
+    if (portMatch && portMatch[1].length > 1) terminal = portMatch[1];
+  }
+
+  return {
+    shipName,
+    shipNameEn: "",
+    operator: "",
+    terminal,
+    arrivalDate,
+    departureDate,
+    arrivalTime,
+    departureTime,
+    grossTonnage: "",
+    passengers: 0,
+    length: "",
+    builtYear: 0,
+    flag: "🚢",
+    type: "クルーズ客船",
+  };
 }
 
 main().catch((err) => {
