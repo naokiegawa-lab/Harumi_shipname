@@ -14,11 +14,8 @@ export async function generateMetadata({ params }: Props) {
   const { id } = await params;
   const ship = getShipById(id);
   if (ship) return { title: `${ship.name} — 晴海フェリーターミナル`, description: ship.description };
-  // スクレイプデータから検索
-  const data = await getScheduleData();
-  const arrival = data.arrivals.find((a) => a.id === id);
-  if (!arrival) return {};
-  return { title: `${arrival.shipName} — 晴海フェリーターミナル` };
+  // スクレイプデータは "use cache" のため generateMetadata 内では呼べない（Suspense 外）
+  return { title: "船舶詳細 — 晴海フェリーターミナル" };
 }
 
 export default async function ShipDetailPage({ params }: Props) {

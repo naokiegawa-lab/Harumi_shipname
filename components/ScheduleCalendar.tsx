@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { PortArrival } from "@/data/schedule";
 
-const TERMINAL_COLORS: Record<PortArrival["terminal"], { bg: string; dot: string; border: string }> = {
+const TERMINAL_COLORS: Record<string, { bg: string; dot: string; border: string }> = {
   "晴海客船ターミナル": {
     bg: "bg-sky-50 hover:bg-sky-100",
     dot: "bg-sky-500",
@@ -15,6 +15,8 @@ const TERMINAL_COLORS: Record<PortArrival["terminal"], { bg: string; dot: string
     border: "border-violet-200",
   },
 };
+
+const DEFAULT_COLOR = { bg: "bg-slate-50 hover:bg-slate-100", dot: "bg-slate-500", border: "border-slate-200" };
 
 const DAYS_JA = ["日", "月", "火", "水", "木", "金", "土"];
 
@@ -139,7 +141,7 @@ export default function ScheduleCalendar({ arrivals }: Props) {
                   </span>
                   <div className="flex flex-wrap gap-0.5">
                     {arrivals.slice(0, 3).map((a) => {
-                      const color = TERMINAL_COLORS[a.terminal];
+                      const color = TERMINAL_COLORS[a.terminal] ?? DEFAULT_COLOR;
                       return (
                         <span
                           key={a.id}
@@ -187,7 +189,7 @@ export default function ScheduleCalendar({ arrivals }: Props) {
           ) : (
             <ul className="divide-y divide-slate-100">
               {selectedArrivals.map((arrival) => {
-                const color = TERMINAL_COLORS[arrival.terminal];
+                const color = TERMINAL_COLORS[arrival.terminal] ?? DEFAULT_COLOR;
                 return (
                   <li key={arrival.id} className="px-5 py-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
