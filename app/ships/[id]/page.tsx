@@ -37,7 +37,7 @@ export default async function ShipDetailPage({ params }: Props) {
 
   // スクレイプデータのみの場合はシンプルな詳細表示
   if (!ship && arrival) {
-    const today = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0]; // UTC で近似（詳細ページはステータス精度より表示優先）
     const status =
       arrival.arrivalDate < today && arrival.departureDate === today ? "出港準備中" :
       arrival.arrivalDate < today && arrival.departureDate > today ? "停泊中" : "接岸中";
