@@ -190,7 +190,12 @@ async function main() {
 
   const browser = await chromium.launch({
     headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",  // GitHub Actions の /dev/shm 64MB制限対策
+      "--disable-gpu",
+    ],
   });
   const context = await browser.newContext({
     locale: "ja-JP",

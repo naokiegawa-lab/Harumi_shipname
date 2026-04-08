@@ -42,7 +42,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: debug-screenshot
-          path: scripts/debug-screenshot.png
+          path: |
+            scripts/debug-screenshot.png
+            scripts/debug-screenshot-list.png
           if-no-files-found: ignore
 
       - name: scraped.json に変更があればコミット＆プッシュ
