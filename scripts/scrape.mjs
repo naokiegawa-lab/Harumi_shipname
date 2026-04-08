@@ -254,9 +254,10 @@ async function main() {
         const row = rows[i];
         const texts = row.map((c) => c.text);
 
-        // Power BI が全セルを1つに連結している場合（texts.length === 1）
-        if (texts.length === 1) {
-          const entry = parseRowText(texts[0]);
+        // Power BI が全データを1セルに連結している場合（"行の選択" プレフィックスで判定）
+        const firstText = texts.find(t => t.length > 0) ?? "";
+        if (firstText.startsWith("行の選択") && firstText.length > 10) {
+          const entry = parseRowText(firstText);
           if (entry) arrivals.push({ id: `scraped-${entry.arrivalDate}-${i}`, ...entry });
           continue;
         }
