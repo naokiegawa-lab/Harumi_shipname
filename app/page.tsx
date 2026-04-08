@@ -3,6 +3,7 @@ import Link from "next/link";
 import { connection } from "next/server";
 import type { Ship } from "@/data/ships";
 import type { PortArrival } from "@/data/schedule";
+import { lookupShip } from "@/data/shipDatabase";
 import { getScheduleData } from "@/lib/getScheduleData";
 import ShipCard from "@/components/ShipCard";
 import TodayDate from "@/components/TodayDate";
@@ -83,7 +84,7 @@ function getTodayJST(): string {
   return now.toISOString().split("T")[0];
 }
 
-/** PortArrival → ShipCard 用の Ship 形式に変換 */
+/** PortArrival → ShipCard 用の Ship 形式に変換（shipDatabase で補完） */
 function arrivalToShip(arrival: PortArrival, today: string): Ship {
   const status: Ship["status"] =
     arrival.arrivalDate < today && arrival.departureDate === today
@@ -100,20 +101,23 @@ function arrivalToShip(arrival: PortArrival, today: string): Ship {
         ]
           .filter(Boolean)
           .join(" / ")
-      : "—";
+      : "";
+
+  // データベースから補完
+  const db = lookupShip(arrival.shipName);
 
   return {
     id: arrival.id,
     name: arrival.shipName,
-    nameEn: arrival.shipNameEn || "",
-    operator: arrival.operator || "—",
+    nameEn: arrival.shipNameEn || db?.nameEn || "",
+    operator: arrival.operator || db?.operator || "",
     type: arrival.type,
-    flag: arrival.flag || "🚢",
-    grossTonnage: arrival.grossTonnage || "—",
-    length: arrival.length || "—",
-    width: "—",
-    builtYear: arrival.builtYear || 0,
-    capacity: { passengers: arrival.passengers || 0 },
+    flag: (arrival.flag && arrival.flag !== "🚢" ? arrival.flag : null) ?? db?.flag ?? "🚢",
+    grossTonnage: arrival.grossTonnage || db?.grossTonnage || "",
+    length: arrival.length || db?.length || "",
+    width: "",
+    builtYear: arrival.builtYear || db?.builtYear || 0,
+    capacity: { passengers: arrival.passengers || db?.passengers || 0 },
     route: timeLabel,
     status,
     berthNumber: arrival.terminal,

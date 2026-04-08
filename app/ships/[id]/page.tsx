@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getShipById } from "@/data/ships";
 import { getScheduleData } from "@/lib/getScheduleData";
+import { lookupShip } from "@/data/shipDatabase";
 import StatusBadge from "@/components/StatusBadge";
 import ScheduleTable from "@/components/ScheduleTable";
 
@@ -46,6 +47,16 @@ async function ScrapedShipDetail({ id }: { id: string }) {
   const arrival = data.arrivals.find((a) => a.id === id);
   if (!arrival) notFound();
 
+  // データベースから補完
+  const db = lookupShip(arrival.shipName);
+  const flag = (arrival.flag && arrival.flag !== "🚢" ? arrival.flag : null) ?? db?.flag ?? "🚢";
+  const nameEn = arrival.shipNameEn || db?.nameEn || "";
+  const operator = arrival.operator || db?.operator || "";
+  const grossTonnage = arrival.grossTonnage || db?.grossTonnage || "";
+  const passengers = arrival.passengers || db?.passengers || 0;
+  const length = arrival.length || db?.length || "";
+  const builtYear = arrival.builtYear || db?.builtYear || 0;
+
   const today = new Date().toISOString().split("T")[0];
   const status =
     arrival.arrivalDate < today && arrival.departureDate === today ? "出港準備中" :
@@ -67,17 +78,24 @@ async function ScrapedShipDetail({ id }: { id: string }) {
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div>
               <div className="text-sky-200 text-sm font-medium mb-2">{arrival.terminal} · {arrival.type}</div>
-              <h1 className="text-3xl sm:text-4xl font-bold mb-1">{arrival.flag} {arrival.shipName}</h1>
-              {arrival.shipNameEn && <p className="text-sky-200 text-lg">{arrival.shipNameEn}</p>}
+              <h1 className="text-3xl sm:text-4xl font-bold mb-1">{flag} {arrival.shipName}</h1>
+              {nameEn && <p className="text-sky-200 text-lg">{nameEn}</p>}
+              {operator && <p className="text-sky-100 text-sm mt-2">{operator}</p>}
             </div>
             <StatusBadge status={status} />
           </div>
           <div className="mt-6 pt-6 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
             <div><p className="text-sky-300 text-xs mb-1">入港日</p><p className="font-semibold">{arrival.arrivalDate}{arrival.arrivalTime ? ` ${arrival.arrivalTime}` : ""}</p></div>
             <div><p className="text-sky-300 text-xs mb-1">出港日</p><p className="font-semibold">{arrival.departureDate}{arrival.departureTime ? ` ${arrival.departureTime}` : ""}</p></div>
-            {arrival.grossTonnage && <div><p className="text-sky-300 text-xs mb-1">総トン数</p><p className="font-semibold">{arrival.grossTonnage}</p></div>}
-            {arrival.passengers > 0 && <div><p className="text-sky-300 text-xs mb-1">旅客定員</p><p className="font-semibold">{arrival.passengers.toLocaleString()}名</p></div>}
+            {grossTonnage && <div><p className="text-sky-300 text-xs mb-1">総トン数</p><p className="font-semibold">{grossTonnage} GT</p></div>}
+            {passengers > 0 && <div><p className="text-sky-300 text-xs mb-1">旅客定員</p><p className="font-semibold">{passengers.toLocaleString()}名</p></div>}
           </div>
+          {(length || builtYear > 0) && (
+            <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+              {length && <div><p className="text-sky-300 text-xs mb-1">全長</p><p className="font-semibold">{length}</p></div>}
+              {builtYear > 0 && <div><p className="text-sky-300 text-xs mb-1">就航年</p><p className="font-semibold">{builtYear}年</p></div>}
+            </div>
+          )}
         </section>
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-700 text-sm">
           ℹ️ このデータは東京都港湾局の入港予定から自動取得されたものです。詳細な船舶情報は各運航会社にお問い合わせください。

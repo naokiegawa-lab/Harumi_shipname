@@ -44,20 +44,24 @@ export default function ShipCard({ ship, index }: Props) {
 
           {/* Info grid */}
           <div className="grid grid-cols-2 gap-3 mb-4">
-            <InfoItem label="運航会社" value={ship.operator} />
-            <InfoItem label="航路" value={ship.route} />
-            <InfoItem label="総トン数" value={ship.grossTonnage} />
-            <InfoItem label="就航年" value={`${ship.builtYear}年`} />
+            {ship.operator && <InfoItem label="運航会社" value={ship.operator} />}
+            {ship.route && <InfoItem label="航路" value={ship.route} />}
+            {ship.grossTonnage && <InfoItem label="総トン数" value={`${ship.grossTonnage} GT`} />}
+            {ship.builtYear > 0 && <InfoItem label="就航年" value={`${ship.builtYear}年`} />}
           </div>
 
           {/* Footer */}
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div className="text-xs text-slate-400">
-              旅客定員:{" "}
-              <span className="text-slate-600 font-medium">
-                {ship.capacity.passengers.toLocaleString()}名
-              </span>
-            </div>
+            {ship.capacity.passengers > 0 ? (
+              <div className="text-xs text-slate-400">
+                旅客定員:{" "}
+                <span className="text-slate-600 font-medium">
+                  {ship.capacity.passengers.toLocaleString()}名
+                </span>
+              </div>
+            ) : (
+              <div />
+            )}
             <span className="text-xs text-sky-600 font-medium group-hover:underline">
               詳細を見る →
             </span>
