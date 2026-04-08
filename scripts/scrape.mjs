@@ -225,8 +225,8 @@ async function main() {
     if (await listViewButton.isVisible()) {
       console.log("✅ 「一覧表示」ボタンが見つかりました。クリックします...");
       await listViewButton.click();
-      await page.waitForTimeout(5000);
-      console.log("⏳ 一覧表示レンダリング待機（5秒）...");
+      await page.waitForTimeout(8000);
+      console.log("⏳ 一覧表示レンダリング待機（8秒）...");
     } else {
       console.warn("⚠️  「一覧表示」ボタンが見つかりませんでした。カレンダービューで試みます。");
     }
@@ -235,14 +235,15 @@ async function main() {
     await page.screenshot({ path: SCREENSHOT_LIST_PATH, fullPage: false });
     console.log(`📸 一覧表示後のスクリーンショット保存`);
 
-    // ページのテキスト全体を取得して内容を確認
-    const pageText = await page.evaluate(() => document.body.innerText);
-    console.log("\n--- ページテキスト（先頭1000文字）---");
-    console.log(pageText.slice(0, 1000));
-    console.log("---\n");
+    // スクロールしながら全行を収集
+    console.log("📜 テーブルをスクロールして全行を収集...");
+    const allRowTexts = await scrollAndCollectAllRows(page);
+    console.log(`  収集した行テキスト: ${allRowTexts.length} 件`);
 
-    // テーブルデータを抽出
-    const { rows, selector } = await extractFromListView(page);
+    // テーブルデータを抽出（スクロール収集がある場合はそちらを優先）
+    const { rows, selector } = allRowTexts.length > 0
+      ? { rows: [[{ text: "__scroll__", bgColor: "" }], ...allRowTexts.map(t => [{ text: t, bgColor: "" }])], selector: "scroll" }
+      : await extractFromListView(page);
 
     if (rows.length > 1) {
       console.log(`✅ テーブルデータ取得: ${rows.length} 行`);
@@ -383,6 +384,68 @@ function parseFromPageText(text) {
     }
   }
   return arrivals;
+}
+
+/**
+ * Power BI テーブルをスクロールしながら全行テキストを収集
+ */
+async function scrollAndCollectAllRows(page) {
+  const collected = new Set();
+  let noNewRowsCount = 0;
+
+  for (let attempt = 0; attempt < 20; attempt++) {
+    // 現在表示されている行を取得
+    const rowTexts = await page.evaluate(() => {
+      const rows = document.querySelectorAll('[role="row"]');
+      const results = [];
+      for (const row of rows) {
+        const text = row.textContent?.trim() ?? "";
+        if (text.startsWith("行の選択") && text.length > 15) {
+          results.push(text);
+        }
+      }
+      return results;
+    });
+
+    const sizeBefore = collected.size;
+    for (const t of rowTexts) collected.add(t);
+    const newRows = collected.size - sizeBefore;
+    console.log(`  スクロール ${attempt + 1}: ${rowTexts.length} 行表示, ${newRows} 行追加 (合計 ${collected.size})`);
+
+    if (newRows === 0) {
+      noNewRowsCount++;
+      if (noNewRowsCount >= 3) break; // 3回連続で新規行なし → 終了
+    } else {
+      noNewRowsCount = 0;
+    }
+
+    // スクロール実行
+    const scrolled = await page.evaluate(() => {
+      // Power BI テーブルのスクロール対象を探す
+      const candidates = [
+        ...document.querySelectorAll('[class*="bodyCells"]'),
+        ...document.querySelectorAll('[class*="tableEx"]'),
+        ...document.querySelectorAll('[role="region"]'),
+        ...document.querySelectorAll('[class*="mid-viewport"]'),
+      ];
+      for (const el of candidates) {
+        if (el.scrollHeight > el.clientHeight + 10) {
+          const before = el.scrollTop;
+          el.scrollTop += 600;
+          if (el.scrollTop !== before) return true;
+        }
+      }
+      // フォールバック: ページ全体をスクロール
+      const before = window.scrollY;
+      window.scrollBy(0, 600);
+      return window.scrollY !== before;
+    });
+
+    await page.waitForTimeout(1200);
+    if (!scrolled && noNewRowsCount >= 1) break;
+  }
+
+  return [...collected];
 }
 
 /**
