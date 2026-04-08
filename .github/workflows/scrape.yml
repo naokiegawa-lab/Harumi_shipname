@@ -61,8 +61,12 @@ jobs:
           fi
 
       - name: Vercel キャッシュ再検証（deploy hook経由）
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' }}
         continue-on-error: true  # 未設定でも失敗しない
-        run: curl -f -X POST "$VERCEL_DEPLOY_HOOK_URL"
+        run: |
+          if [ -n "$VERCEL_DEPLOY_HOOK_URL" ]; then
+            curl -f -X POST "$VERCEL_DEPLOY_HOOK_URL"
+          else
+            echo "VERCEL_DEPLOY_HOOK_URL が未設定のためスキップします"
+          fi
         env:
           VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
