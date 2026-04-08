@@ -5,6 +5,8 @@ import { getScheduleData } from "@/lib/getScheduleData";
 import StatusBadge from "@/components/StatusBadge";
 import ScheduleTable from "@/components/ScheduleTable";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ id: string }>;
 };
