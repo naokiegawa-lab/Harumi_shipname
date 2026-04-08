@@ -57,6 +57,7 @@ jobs:
 
             更新日時: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
             スクレイプ結果: ${{ steps.scrape.outcome }}"
+            git pull --rebase origin main
             git push
           fi
 
