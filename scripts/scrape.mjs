@@ -1,12 +1,10 @@
 /**
  * 晴海客船ターミナル スクレイパー
- * 東京都港湾局 Power BI ダッシュボードからデータを取得し
- * data/scraped.json に保存します。
+ * 東京都港湾局 Power BI ダッシュボード（CRUISE CALL CALENDAR）から
+ * 「一覧表示」ボタンでテーブルに切り替えてデータを取得します。
  *
  * 使い方:
  *   node scripts/scrape.mjs
- *
- * GitHub Actions からも自動実行されます（.github/workflows/scrape.yml）
  */
 
 import { chromium } from "playwright";
@@ -16,27 +14,34 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_PATH = path.join(__dirname, "..", "data", "scraped.json");
+const SCREENSHOT_PATH = path.join(__dirname, "debug-screenshot.png");
+const SCREENSHOT_LIST_PATH = path.join(__dirname, "debug-screenshot-list.png");
 
 const POWER_BI_URL =
   "https://app.powerbi.com/view?r=eyJrIjoiZDcxNWQ1YTYtYzYyOS00ZTM3LWJhOTctMmNlZDFmY2Y2OGE2IiwidCI6ImQwMzAyZmNjLTNlODEtNDljMy04MjM1LWQzMTFhMzY4NGNmYyJ9";
 
-/** Power BI のターミナル表記を正規化 */
+// 港名とターミナル種別のマッピング
+const TERMINAL_MAP = {
+  "東京国際クルーズターミナル": "東京国際クルーズターミナル",
+  "晴海客船ターミナル": "晴海客船ターミナル",
+  "harumi": "晴海客船ターミナル",
+  "international": "東京国際クルーズターミナル",
+};
+
 function normalizeTerminal(raw) {
   if (!raw) return "東京国際クルーズターミナル";
-  if (raw.includes("晴海")) return "晴海客船ターミナル";
-  if (raw.includes("有明") || raw.includes("国際")) return "東京国際クルーズターミナル";
+  for (const [key, val] of Object.entries(TERMINAL_MAP)) {
+    if (raw.includes(key)) return val;
+  }
   return raw.trim();
 }
 
-/** 日付文字列を YYYY-MM-DD に正規化 */
 function normalizeDate(raw) {
   if (!raw) return null;
-  // "2026/4/6" → "2026-04-06"
+  // "2026/4/6" or "2026-4-6"
   const m = raw.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
-  if (m) {
-    return `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`;
-  }
-  // "4月6日" → "2026-04-06"（年は今年と仮定）
+  if (m) return `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}`;
+  // "4月6日"
   const m2 = raw.match(/(\d{1,2})月(\d{1,2})日/);
   if (m2) {
     const year = new Date().getFullYear();
@@ -45,151 +50,151 @@ function normalizeDate(raw) {
   return null;
 }
 
-/** Power BI テーブルのヘッダーと行を抽出 */
-async function extractTableData(page) {
-  return await page.evaluate(() => {
+/** カレンダービューから全日程のデータを抽出 */
+async function extractFromCalendar(page) {
+  const arrivals = [];
+
+  // カレンダー上のすべての船エントリを収集
+  // Power BIのカレンダービジュアルのセルを探す
+  const entries = await page.evaluate(() => {
     const results = [];
 
-    // Power BI のテーブルビジュアルを探す
-    // セレクタはバージョンにより変わる可能性があるため複数パターン試す
-    const tableSelectors = [
-      "div[class*='tableEx'] .tableExCellsGroup .row",
-      "div[class*='bodyCells'] .row",
-      ".pivotTable .row",
-      ".tableEx .row",
-      "[aria-label*='テーブル'] [role='row']",
-      "[role='grid'] [role='row']",
-      "table tr",
+    // Power BI visual のテキスト要素を全取得
+    const allText = document.querySelectorAll(
+      "text, [class*='label'], [class*='cell'], [class*='calendar'] span, " +
+      "div[class*='visual'] span, div[class*='matrix'] span"
+    );
+
+    for (const el of allText) {
+      const text = el.textContent?.trim();
+      if (!text || text.length < 2) continue;
+
+      // 日付ぽいテキスト
+      if (/^\d{1,2}日?$/.test(text)) continue;
+      // 港名の凡例等はスキップ
+      if (["JP", "EN", "すべて", "リセット", "一覧表示", "今日"].includes(text)) continue;
+      // 色情報を取得（クラスやスタイルから）
+      const style = window.getComputedStyle(el);
+      const bgColor = style.backgroundColor;
+      const color = style.color;
+
+      // 親要素から日付を探す
+      let dateText = null;
+      let el2 = el.parentElement;
+      for (let i = 0; i < 6; i++) {
+        if (!el2) break;
+        const innerText = el2.innerText ?? "";
+        const dateMatch = innerText.match(/(\d{1,2})[日]?[\s\n]/);
+        if (dateMatch) {
+          dateText = dateMatch[1];
+          break;
+        }
+        el2 = el2.parentElement;
+      }
+
+      results.push({
+        text,
+        bgColor,
+        color,
+        dateText,
+        tagName: el.tagName,
+        className: el.className,
+      });
+    }
+
+    return results;
+  });
+
+  console.log(`  カレンダーから ${entries.length} 件のテキスト要素を取得`);
+  return entries;
+}
+
+/** 一覧表示テーブルからデータを抽出 */
+async function extractFromListView(page) {
+  const arrivals = [];
+
+  // テーブルの行を収集
+  const rows = await page.evaluate(() => {
+    const results = [];
+
+    // Power BI テーブルビジュアルの行を探す
+    const selectors = [
+      // Power BI の標準テーブルビジュアル
+      ".tableEx .rowsGroup .row",
+      ".pivotTable .bodyCells .row",
+      "[class*='tableEx'] [class*='row']",
+      "[class*='bodyCells'] [class*='row']",
+      // Power BI Matrix
+      "[role='row']",
+      "tr",
     ];
 
     let rows = [];
-    for (const sel of tableSelectors) {
+    let usedSelector = "";
+    for (const sel of selectors) {
       const found = document.querySelectorAll(sel);
-      if (found.length > 0) {
+      if (found.length > 1) { // ヘッダー除く
         rows = Array.from(found);
+        usedSelector = sel;
         break;
       }
     }
 
-    // テーブルが見つからない場合はテキスト全体を返す
-    if (rows.length === 0) {
-      return { raw: document.body.innerText, rows: [] };
-    }
-
     for (const row of rows) {
-      const cells = Array.from(
-        row.querySelectorAll("td, [role='gridcell'], .cell")
+      const cells = row.querySelectorAll(
+        "td, [role='gridcell'], [class*='cell'], [class*='Cell']"
       );
-      const texts = cells.map((c) => c.innerText?.trim() ?? "");
-      if (texts.some((t) => t.length > 0)) {
+      const texts = Array.from(cells).map((c) => ({
+        text: c.textContent?.trim() ?? "",
+        bgColor: window.getComputedStyle(c).backgroundColor,
+      }));
+      if (texts.some((t) => t.text.length > 0)) {
         results.push(texts);
       }
     }
 
-    return { raw: null, rows: results };
+    return { rows: results, selector: usedSelector };
   });
+
+  console.log(`  テーブル行数: ${rows.rows.length} (セレクタ: ${rows.selector})`);
+  return rows;
 }
 
-/** テキスト全体から入港情報を正規表現で抽出（フォールバック） */
-function parseRawText(raw) {
-  const arrivals = [];
-  const lines = raw.split("\n").map((l) => l.trim()).filter(Boolean);
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    // 船名らしい行を探す（カタカナ・英字を含み、日付が近くにある）
-    const dateMatch = line.match(/\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2}/) ||
-                      (lines[i + 1] && lines[i + 1].match(/\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2}/));
-    if (!dateMatch) continue;
-
-    const context = lines.slice(Math.max(0, i - 2), i + 5).join(" ");
-    const dateStr = normalizeDate(
-      context.match(/(\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2})/)?.[1]
+/** ページ全体のテキストを構造化して取得 */
+async function extractAllText(page) {
+  return await page.evaluate(() => {
+    // Power BI の visual コンテナを探す
+    const visuals = document.querySelectorAll(
+      "[class*='visual'], [data-testid], [aria-label]"
     );
-    if (!dateStr) continue;
+    const results = [];
 
-    arrivals.push({
-      id: `scraped-${dateStr}-${i}`,
-      shipName: line,
-      shipNameEn: "",
-      operator: "",
-      terminal: normalizeTerminal(context),
-      arrivalDate: dateStr,
-      departureDate: dateStr,
-      grossTonnage: "",
-      passengers: 0,
-      length: "",
-      builtYear: 0,
-      flag: "🚢",
-      type: "クルーズ客船",
-    });
-  }
-
-  return arrivals;
-}
-
-/** テーブル行配列からデータをパース */
-function parseTableRows(rows) {
-  if (rows.length === 0) return [];
-
-  // ヘッダー行を推測
-  const header = rows[0].map((h) => h.toLowerCase());
-  const arrivals = [];
-
-  for (let i = 1; i < rows.length; i++) {
-    const row = rows[i];
-    if (row.every((c) => c === "")) continue;
-
-    const get = (keywords) => {
-      for (const kw of keywords) {
-        const idx = header.findIndex((h) => h.includes(kw));
-        if (idx >= 0 && row[idx]) return row[idx];
+    for (const v of visuals) {
+      const text = v.innerText?.trim();
+      if (text && text.length > 10) {
+        results.push({
+          tag: v.tagName,
+          ariaLabel: v.getAttribute("aria-label") ?? "",
+          text: text.slice(0, 500),
+        });
       }
-      // ヘッダーが不明な場合はインデックスで推測
-      return row.find((c) => c.length > 0) ?? "";
-    };
+    }
 
-    const shipName =
-      get(["船名", "ship", "vessel", "客船"]) || row[0] || "";
-    const arrivalRaw =
-      get(["入港", "arrival", "着", "入"]) || row[1] || "";
-    const departureRaw =
-      get(["出港", "departure", "発", "出"]) || row[2] || "";
-    const terminalRaw =
-      get(["ターミナル", "terminal", "バース", "berth"]) || "";
-
-    const arrivalDate = normalizeDate(arrivalRaw) ?? normalizeDate(row.find((c) => /\d{4}[\/\-]\d/.test(c)) ?? null);
-    if (!shipName || !arrivalDate) continue;
-
-    arrivals.push({
-      id: `scraped-${arrivalDate}-${i}`,
-      shipName: shipName.trim(),
-      shipNameEn: "",
-      operator: get(["運航", "operator", "会社", "ライン"]) || "",
-      terminal: normalizeTerminal(terminalRaw),
-      arrivalDate,
-      departureDate: normalizeDate(departureRaw) ?? arrivalDate,
-      arrivalTime: get(["入港時", "arrival time"]) || undefined,
-      departureTime: get(["出港時", "departure time"]) || undefined,
-      grossTonnage: get(["トン", "gt", "gross"]) || "",
-      passengers: 0,
-      length: "",
-      builtYear: 0,
-      flag: "🚢",
-      type: "クルーズ客船",
-    });
-  }
-
-  return arrivals;
+    return results;
+  });
 }
 
 async function main() {
   console.log("🚢 晴海客船ターミナル スクレイパー 開始");
   console.log(`📡 URL: ${POWER_BI_URL}`);
 
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const context = await browser.newContext({
     locale: "ja-JP",
+    viewport: { width: 1280, height: 800 },
     userAgent:
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
   });
@@ -201,42 +206,111 @@ async function main() {
     console.log("⏳ ページ読み込み中...");
     await page.goto(POWER_BI_URL, { waitUntil: "networkidle", timeout: 60000 });
 
-    // Power BI のレンダリング完了を待つ
-    console.log("⏳ Power BI レンダリング待機中（最大60秒）...");
-    await page.waitForTimeout(8000);
+    console.log("⏳ Power BI 初期レンダリング待機（15秒）...");
+    await page.waitForTimeout(15000);
 
-    // ローディングスピナーが消えるまで待つ
-    try {
-      await page.waitForSelector(
-        "[class*='loading'], [class*='spinner'], [aria-label*='読み込み']",
-        { state: "hidden", timeout: 30000 }
-      );
-    } catch {
-      // タイムアウトは無視してそのまま続行
+    // スクリーンショット（カレンダービュー）
+    await page.screenshot({ path: SCREENSHOT_PATH, fullPage: false });
+    console.log(`📸 カレンダービューのスクリーンショット保存`);
+
+    // 「一覧表示」ボタンを探してクリック
+    console.log("🔍 「一覧表示」ボタンを探しています...");
+    const listViewButton = await page.getByText("一覧表示").first();
+
+    if (await listViewButton.isVisible()) {
+      console.log("✅ 「一覧表示」ボタンが見つかりました。クリックします...");
+      await listViewButton.click();
+      await page.waitForTimeout(5000);
+      console.log("⏳ 一覧表示レンダリング待機（5秒）...");
+    } else {
+      console.warn("⚠️  「一覧表示」ボタンが見つかりませんでした。カレンダービューで試みます。");
     }
 
-    // さらにレンダリング待機
-    await page.waitForTimeout(5000);
+    // 一覧表示後のスクリーンショット
+    await page.screenshot({ path: SCREENSHOT_LIST_PATH, fullPage: false });
+    console.log(`📸 一覧表示後のスクリーンショット保存`);
 
-    // スクリーンショット保存（デバッグ用）
-    await page.screenshot({ path: "scripts/debug-screenshot.png", fullPage: true });
-    console.log("📸 デバッグ用スクリーンショット保存: scripts/debug-screenshot.png");
+    // ページのテキスト全体を取得して内容を確認
+    const pageText = await page.evaluate(() => document.body.innerText);
+    console.log("\n--- ページテキスト（先頭1000文字）---");
+    console.log(pageText.slice(0, 1000));
+    console.log("---\n");
 
-    // テーブルデータ抽出
-    console.log("🔍 データ抽出中...");
-    const extracted = await extractTableData(page);
+    // テーブルデータを抽出
+    const { rows, selector } = await extractFromListView(page);
 
-    if (extracted.rows.length > 0) {
-      console.log(`✅ テーブル行数: ${extracted.rows.length}`);
-      arrivals = parseTableRows(extracted.rows);
-    } else if (extracted.raw) {
-      console.log("⚠️  テーブルが見つからない。テキスト全体から解析します...");
-      arrivals = parseRawText(extracted.raw);
+    if (rows.length > 1) {
+      console.log(`✅ テーブルデータ取得: ${rows.length} 行`);
+      // ヘッダー行
+      const header = rows[0].map((c) => c.text.toLowerCase());
+      console.log("  ヘッダー:", header.join(" | "));
+
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const texts = row.map((c) => c.text);
+
+        // 列インデックスを推測
+        const findIdx = (...keywords) => {
+          for (const kw of keywords) {
+            const idx = header.findIndex((h) => h.includes(kw));
+            if (idx >= 0) return idx;
+          }
+          return -1;
+        };
+
+        const shipIdx = findIdx("客船", "船名", "ship", "vessel");
+        const arrivalDateIdx = findIdx("到着日", "入港日", "arrival", "到着");
+        const departureDateIdx = findIdx("出発日", "出港日", "departure", "出発");
+        const arrivalTimeIdx = findIdx("到着時刻", "入港時刻", "到着時間");
+        const departureTimeIdx = findIdx("出発時刻", "出港時刻", "出発時間");
+        const terminalIdx = findIdx("港名", "ターミナル", "terminal", "港");
+
+        const shipName = shipIdx >= 0 ? texts[shipIdx] : texts[0];
+        const arrivalDate = normalizeDate(
+          arrivalDateIdx >= 0 ? texts[arrivalDateIdx] : null
+        );
+        const departureDate = normalizeDate(
+          departureDateIdx >= 0 ? texts[departureDateIdx] : null
+        );
+        const terminal = normalizeTerminal(
+          terminalIdx >= 0 ? texts[terminalIdx] : ""
+        );
+
+        if (!shipName || shipName === "行の選択") continue;
+        if (!arrivalDate) continue;
+
+        arrivals.push({
+          id: `scraped-${arrivalDate}-${i}`,
+          shipName: shipName.trim(),
+          shipNameEn: "",
+          operator: "",
+          terminal,
+          arrivalDate,
+          departureDate: departureDate ?? arrivalDate,
+          arrivalTime: arrivalTimeIdx >= 0 ? texts[arrivalTimeIdx] : undefined,
+          departureTime: departureDateIdx >= 0 ? texts[departureDateIdx] : undefined,
+          grossTonnage: "",
+          passengers: 0,
+          length: "",
+          builtYear: 0,
+          flag: "🚢",
+          type: "クルーズ客船",
+        });
+      }
+    } else {
+      // テーブルが見つからない場合、ページテキストを解析
+      console.warn("⚠️  テーブルが見つからない。ページテキストを解析します...");
+      arrivals = parseFromPageText(pageText);
     }
 
-    console.log(`📦 抽出された入港数: ${arrivals.length}`);
+    console.log(`\n📦 抽出された入港数: ${arrivals.length}`);
+    if (arrivals.length > 0) {
+      console.log("  サンプル:", JSON.stringify(arrivals[0], null, 2));
+    }
+
   } catch (err) {
     console.error("❌ スクレイピングエラー:", err.message);
+    console.error(err.stack);
   } finally {
     await browser.close();
   }
@@ -245,9 +319,7 @@ async function main() {
   let existing = { arrivals: [] };
   try {
     existing = JSON.parse(await fs.readFile(OUTPUT_PATH, "utf-8"));
-  } catch {
-    // 初回実行時は無視
-  }
+  } catch { /* 初回 */ }
 
   const output = {
     lastUpdated: new Date().toISOString(),
@@ -256,17 +328,48 @@ async function main() {
   };
 
   await fs.writeFile(OUTPUT_PATH, JSON.stringify(output, null, 2), "utf-8");
-  console.log(`💾 保存完了: ${OUTPUT_PATH}`);
+  console.log(`\n💾 保存完了: ${OUTPUT_PATH}`);
   console.log(`   入港データ: ${output.arrivals.length}件`);
   console.log(`   更新日時: ${output.lastUpdated}`);
 
-  if (arrivals.length === 0) {
-    console.warn("⚠️  データが取得できませんでした。");
-    console.warn("   scripts/debug-screenshot.png を確認してください。");
-    process.exit(1);
-  }
+  process.exit(arrivals.length > 0 ? 0 : 1);
+}
 
-  process.exit(0);
+/** ページテキストから日本語の船名・日付を抽出（フォールバック） */
+function parseFromPageText(text) {
+  const arrivals = [];
+  const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
+
+  // 日付のパターン
+  const datePattern = /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/;
+
+  let currentDate = null;
+  for (const line of lines) {
+    const dateMatch = line.match(datePattern);
+    if (dateMatch) {
+      currentDate = normalizeDate(dateMatch[0]);
+      continue;
+    }
+    // 船名っぽい行（カタカナや英字を含み短い）
+    if (currentDate && /[ァ-ヶA-Za-z]/.test(line) && line.length < 30) {
+      arrivals.push({
+        id: `scraped-${currentDate}-${arrivals.length}`,
+        shipName: line,
+        shipNameEn: "",
+        operator: "",
+        terminal: "東京国際クルーズターミナル",
+        arrivalDate: currentDate,
+        departureDate: currentDate,
+        grossTonnage: "",
+        passengers: 0,
+        length: "",
+        builtYear: 0,
+        flag: "🚢",
+        type: "クルーズ客船",
+      });
+    }
+  }
+  return arrivals;
 }
 
 main().catch((err) => {
