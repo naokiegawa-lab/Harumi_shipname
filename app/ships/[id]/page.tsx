@@ -90,6 +90,32 @@ async function ScrapedShipDetail({ id }: { id: string }) {
             {grossTonnage && <div><p className="text-sky-300 text-xs mb-1">総トン数</p><p className="font-semibold">{grossTonnage} GT</p></div>}
             {passengers > 0 && <div><p className="text-sky-300 text-xs mb-1">旅客定員</p><p className="font-semibold">{passengers.toLocaleString()}名</p></div>}
           </div>
+          {(arrival.previousPort || arrival.nextPort) && (
+            <div className="mt-6 pt-6 border-t border-white/20">
+              <div className="flex items-center justify-center gap-3 text-sm">
+                {arrival.previousPort && (
+                  <div className="text-center">
+                    <p className="text-sky-300 text-xs mb-1">前港</p>
+                    <p className="font-semibold">{arrival.previousPort}</p>
+                  </div>
+                )}
+                <div className="text-sky-300 text-lg">→</div>
+                <div className="text-center">
+                  <p className="text-sky-300 text-xs mb-1">当港</p>
+                  <p className="font-bold">{arrival.terminal === "晴海客船ターミナル" ? "晴海" : "東京"}</p>
+                </div>
+                {arrival.nextPort && (
+                  <>
+                    <div className="text-sky-300 text-lg">→</div>
+                    <div className="text-center">
+                      <p className="text-sky-300 text-xs mb-1">次港</p>
+                      <p className="font-semibold">{arrival.nextPort}</p>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
           {(length || builtYear > 0) && (
             <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
               {length && <div><p className="text-sky-300 text-xs mb-1">全長</p><p className="font-semibold">{length}</p></div>}

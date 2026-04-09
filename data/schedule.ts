@@ -14,6 +14,8 @@ export type PortArrival = {
   builtYear: number;
   flag: string;
   type: "クルーズ客船" | "探検船";
+  previousPort?: string;
+  nextPort?: string;
   note?: string;
 };
 

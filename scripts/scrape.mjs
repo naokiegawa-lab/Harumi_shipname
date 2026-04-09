@@ -474,21 +474,30 @@ function parseRowText(rawText) {
   const arrivalTime = times[0]?.[0];
   const departureTime = times[1]?.[0];
 
+  // 日付・時刻以降のテキストを取得（ターミナル＋前港＋次港が含まれる）
+  const lastTime = times[times.length - 1];
+  const lastDate = dates[dates.length - 1];
+  const afterIdx = lastTime
+    ? lastTime.index + lastTime[0].length
+    : lastDate.index + lastDate[0].length;
+  const trailingText = text.slice(afterIdx).trim();
+
   // ターミナル名を特定
   let terminal = "東京国際クルーズターミナル"; // デフォルト
-  if (text.includes("晴海客船ターミナル")) {
+  let portText = "";
+  if (trailingText.includes("晴海客船ターミナル")) {
     terminal = "晴海客船ターミナル";
-  } else if (text.includes("東京国際クルーズターミナル")) {
+    portText = trailingText.slice(trailingText.indexOf("晴海客船ターミナル") + "晴海客船ターミナル".length);
+  } else if (trailingText.includes("東京国際クルーズターミナル")) {
     terminal = "東京国際クルーズターミナル";
+    portText = trailingText.slice(trailingText.indexOf("東京国際クルーズターミナル") + "東京国際クルーズターミナル".length);
   } else {
-    // 既知ターミナル以外（離島港など）: 最後の日付以降のテキストから推測
-    const lastDate = dates[dates.length - 1];
-    const afterAll = text.slice(lastDate.index + lastDate[0].length)
-      .replace(/\d{2}:\d{2}/g, "").trim();
-    // 最初の区切り前が港名
-    const portMatch = afterAll.match(/^([^\s]+)/);
+    const portMatch = trailingText.match(/^([^\s]+)/);
     if (portMatch && portMatch[1].length > 1) terminal = portMatch[1];
   }
+
+  // 前港・次港を抽出（ターミナル名の後に連結されている）
+  const { previousPort, nextPort } = splitPorts(portText);
 
   return {
     shipName,
@@ -499,6 +508,8 @@ function parseRowText(rawText) {
     departureDate,
     arrivalTime,
     departureTime,
+    previousPort: previousPort || undefined,
+    nextPort: nextPort || undefined,
     grossTonnage: "",
     passengers: 0,
     length: "",
@@ -506,6 +517,60 @@ function parseRowText(rawText) {
     flag: "🚢",
     type: "クルーズ客船",
   };
+}
+
+/**
+ * 連結された前港・次港テキストを分割する
+ * 例: "清水大阪" → { previousPort: "清水", nextPort: "大阪" }
+ */
+const KNOWN_PORTS = [
+  // 長い名前を先にマッチさせる（greedy）
+  "カロリン諸島", "大東諸島", "伊勢志摩",
+  "八重根漁港", "神湊漁港", "阿古漁港", "大久保漁港",
+  "二見港", "岡田港", "神湊港", "八丈島",
+  "横浜", "清水", "大阪", "名古屋", "神戸", "仙台",
+  "大洗", "館山", "熱海", "東京", "石巻", "浜島",
+  "宮之浦", "大久保", "広島", "高知", "鹿児島",
+  "那覇", "金沢", "新潟", "函館", "小樽", "釧路",
+  "青森", "秋田", "酒田", "境港", "舞鶴", "別府",
+  "宮崎", "室蘭", "網走", "稚内", "長崎", "佐世保",
+  "下関", "徳島", "高松", "松山", "博多", "奄美",
+  "石垣", "基隆", "上海", "釜山", "済州", "香港",
+  "ウラジオストク", "ペトロパブロフスク",
+];
+
+function splitPorts(text) {
+  // "初入港" や "ゾディアック" 等の注記を除去
+  const cleaned = text.replace(/初入港/g, "").replace(/ゾディアック/g, "").replace(/\//g, "").trim();
+  if (!cleaned) return { previousPort: "", nextPort: "" };
+
+  // 先頭から既知の港名を貪欲マッチ
+  let previousPort = "";
+  let remainder = cleaned;
+  for (const port of KNOWN_PORTS) {
+    if (remainder.startsWith(port)) {
+      previousPort = port;
+      remainder = remainder.slice(port.length);
+      break;
+    }
+  }
+
+  let nextPort = "";
+  for (const port of KNOWN_PORTS) {
+    if (remainder.startsWith(port)) {
+      nextPort = port;
+      break;
+    }
+  }
+
+  // 既知の港名にマッチしなかった場合、テキストを半分に分割
+  if (!previousPort && cleaned.length >= 2) {
+    const mid = Math.ceil(cleaned.length / 2);
+    previousPort = cleaned.slice(0, mid);
+    nextPort = cleaned.slice(mid);
+  }
+
+  return { previousPort, nextPort };
 }
 
 main().catch((err) => {

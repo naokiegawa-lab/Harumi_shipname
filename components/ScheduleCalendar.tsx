@@ -228,6 +228,19 @@ export default function ScheduleCalendar({ arrivals, todayStr }: Props) {
                         </>
                       )}
                     </div>
+                    {(arrival.previousPort || arrival.nextPort) && (
+                      <div className="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
+                        {arrival.previousPort && <span>{arrival.previousPort}</span>}
+                        <span className="text-slate-300">→</span>
+                        <span className="font-medium text-slate-700">{arrival.terminal === "晴海客船ターミナル" ? "晴海" : "東京"}</span>
+                        {arrival.nextPort && (
+                          <>
+                            <span className="text-slate-300">→</span>
+                            <span>{arrival.nextPort}</span>
+                          </>
+                        )}
+                      </div>
+                    )}
                     {arrival.note && (
                       <p className="mt-2 text-xs text-amber-600 bg-amber-50 rounded-lg px-2 py-1">
                         ⚠ {arrival.note}
