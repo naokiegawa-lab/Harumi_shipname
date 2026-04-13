@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-12T19:56:23.662Z",
+  "lastUpdated": "2026-04-13T07:28:28.316Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -989,7 +989,7 @@
       "terminal": "晴海客船ターミナル",
       "arrivalDate": "2026-04-13",
       "departureDate": "2026-04-13",
-      "arrivalTime": "08:00",
+      "arrivalTime": "07:00",
       "departureTime": "19:00",
       "previousPort": "清水",
       "nextPort": "別府",
