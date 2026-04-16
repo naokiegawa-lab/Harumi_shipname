@@ -47,18 +47,24 @@ jobs:
             scripts/debug-screenshot-list.png
           if-no-files-found: ignore
 
-      - name: scraped.json に変更があればコミット＆プッシュ
+      - name: 未知の船舶情報を自動検索・補完
+        id: enrich
+        run: node scripts/enrich-ships.mjs
+        continue-on-error: true
+
+      - name: 変更をコミット＆プッシュ
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/scraped.json
+          git add data/scraped.json data/shipDatabase.json
           if git diff --cached --quiet; then
             echo "✅ 変更なし。スキップします。"
           else
-            git commit -m "chore: スケジュールデータを自動更新 [skip ci]
+            git commit -m "chore: スケジュールデータを自動更新
 
             更新日時: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
-            スクレイプ結果: ${{ steps.scrape.outcome }}"
+            スクレイプ結果: ${{ steps.scrape.outcome }}
+            船舶DB補完: ${{ steps.enrich.outcome }}"
             git pull --rebase origin main
             git push
           fi
