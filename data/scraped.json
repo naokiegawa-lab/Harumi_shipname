@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-20T08:04:32.453Z",
+  "lastUpdated": "2026-04-20T13:26:14.690Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -854,6 +854,25 @@
     },
     {
       "id": "scraped-2026-04-20-51",
+      "shipName": "MSCベリッシマ",
+      "shipNameEn": "",
+      "operator": "",
+      "terminal": "東京国際クルーズターミナル",
+      "arrivalDate": "2026-04-20",
+      "departureDate": "2026-04-20",
+      "arrivalTime": "07:00",
+      "departureTime": "19:00",
+      "previousPort": "佐世保",
+      "nextPort": "函館",
+      "grossTonnage": "",
+      "passengers": 0,
+      "length": "",
+      "builtYear": 0,
+      "flag": "🚢",
+      "type": "クルーズ客船"
+    },
+    {
+      "id": "scraped-2026-04-20-52",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -864,25 +883,6 @@
       "departureTime": "19:00",
       "previousPort": "函館",
       "nextPort": "神戸",
-      "grossTonnage": "",
-      "passengers": 0,
-      "length": "",
-      "builtYear": 0,
-      "flag": "🚢",
-      "type": "クルーズ客船"
-    },
-    {
-      "id": "scraped-2026-04-20-52",
-      "shipName": "MSCベリッシマ",
-      "shipNameEn": "",
-      "operator": "",
-      "terminal": "東京国際クルーズターミナル",
-      "arrivalDate": "2026-04-20",
-      "departureDate": "2026-04-20",
-      "arrivalTime": "08:00",
-      "departureTime": "19:00",
-      "previousPort": "佐世保",
-      "nextPort": "函館",
       "grossTonnage": "",
       "passengers": 0,
       "length": "",
