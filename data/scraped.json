@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-01T08:10:05.026Z",
+  "lastUpdated": "2026-05-01T13:16:05.108Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -636,7 +636,7 @@
       "terminal": "東京国際クルーズターミナル",
       "arrivalDate": "2026-05-04",
       "departureDate": "2026-05-04",
-      "arrivalTime": "08:00",
+      "arrivalTime": "05:30",
       "departureTime": "16:30",
       "previousPort": "鹿児島",
       "grossTonnage": "",
