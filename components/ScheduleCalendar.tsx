@@ -35,15 +35,40 @@ function toDateStr(year: number, month: number, day: number) {
 type Props = {
   arrivals: PortArrival[];
   todayStr: string;
+  /** 初期表示する年月（例: "2026-05"） */
+  initialYearMonth: string;
 };
 
-export default function ScheduleCalendar({ arrivals, todayStr }: Props) {
+function parseYM(ym: string): [number, number] {
+  const [y, m] = ym.split("-").map(Number);
+  return [y, m - 1]; // month は 0-indexed
+}
+
+export default function ScheduleCalendar({ arrivals, todayStr, initialYearMonth }: Props) {
+  const [initYear, initMonth] = parseYM(initialYearMonth);
+  const [viewYear, setViewYear] = useState<number>(initYear);
+  const [viewMonth, setViewMonth] = useState<number>(initMonth);
   const [selectedDate, setSelectedDate] = useState<string>(todayStr);
 
-  const year = 2026;
-  const month = 3; // April (0-indexed)
-  const daysInMonth = getDaysInMonth(year, month);
-  const firstDayOfWeek = getFirstDayOfWeek(year, month);
+  const daysInMonth = getDaysInMonth(viewYear, viewMonth);
+  const firstDayOfWeek = getFirstDayOfWeek(viewYear, viewMonth);
+
+  function goToMonth(deltaMonths: number) {
+    let y = viewYear;
+    let m = viewMonth + deltaMonths;
+    while (m < 0) { y -= 1; m += 12; }
+    while (m > 11) { y += 1; m -= 12; }
+    setViewYear(y);
+    setViewMonth(m);
+
+    // 月切り替え時、選択日を再計算
+    const newYM = `${y}-${String(m + 1).padStart(2, "0")}`;
+    if (todayStr.startsWith(newYM)) {
+      setSelectedDate(todayStr);
+    } else {
+      setSelectedDate(`${newYM}-01`);
+    }
+  }
 
   // Build map: dateStr -> arrivals
   const arrivalMap: Record<string, PortArrival[]> = {};
@@ -74,10 +99,26 @@ export default function ScheduleCalendar({ arrivals, todayStr }: Props) {
       {/* Calendar */}
       <div className="lg:col-span-3 bg-white rounded-2xl border border-slate-200 overflow-hidden">
         {/* Month header */}
-        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-          <h2 className="font-bold text-slate-800 text-lg">
-            2026年4月 入港カレンダー
-          </h2>
+        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => goToMonth(-1)}
+              aria-label="前月"
+              className="w-8 h-8 flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-sky-600 transition-colors"
+            >
+              ←
+            </button>
+            <h2 className="font-bold text-slate-800 text-lg whitespace-nowrap">
+              {viewYear}年{viewMonth + 1}月 入港カレンダー
+            </h2>
+            <button
+              onClick={() => goToMonth(1)}
+              aria-label="次月"
+              className="w-8 h-8 flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-sky-600 transition-colors"
+            >
+              →
+            </button>
+          </div>
           <div className="flex items-center gap-3 text-xs">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-sky-500" />
@@ -111,7 +152,7 @@ export default function ScheduleCalendar({ arrivals, todayStr }: Props) {
               if (day === null) {
                 return <div key={`empty-${idx}`} />;
               }
-              const dateStr = toDateStr(year, month, day);
+              const dateStr = toDateStr(viewYear, viewMonth, day);
               const arrivals = arrivalMap[dateStr] ?? [];
               const isToday = dateStr === todayStr;
               const isSelected = dateStr === selectedDate;

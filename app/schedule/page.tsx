@@ -7,7 +7,7 @@ import ScheduleCalendar from "@/components/ScheduleCalendar";
 
 export const metadata: Metadata = {
   title: "入港カレンダー — 晴海フェリーターミナル",
-  description: "2026年4月の東京港（晴海・東京国際クルーズターミナル）入港予定カレンダー",
+  description: "東京港（晴海・東京国際クルーズターミナル）の入港予定カレンダー",
 };
 
 export default function SchedulePage() {
@@ -72,12 +72,18 @@ async function ScheduleContent() {
   await connection();
   const data = await getScheduleData();
 
-  const todayStr = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().split("T")[0];
+  const todayJst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  const todayStr = todayJst.toISOString().split("T")[0];
+  const currentYM = todayStr.slice(0, 7); // "2026-05"
+  const currentMonthLabel = `${todayJst.getUTCFullYear()}年${todayJst.getUTCMonth() + 1}月`;
 
-  const harumi = data.arrivals.filter(
+  // 今月分の入港のみ集計（全期間ではなく当月で絞り込み）
+  const thisMonthArrivals = data.arrivals.filter((a) => a.arrivalDate.startsWith(currentYM));
+  const total = thisMonthArrivals.length;
+  const harumi = thisMonthArrivals.filter(
     (a) => a.terminal === "晴海客船ターミナル"
   ).length;
-  const international = data.arrivals.filter(
+  const international = thisMonthArrivals.filter(
     (a) => a.terminal === "東京国際クルーズターミナル"
   ).length;
 
@@ -104,7 +110,7 @@ async function ScheduleContent() {
     <>
       <div className="flex flex-wrap items-center gap-3 -mt-4 mb-6">
         <p className="text-slate-500 text-sm">
-          2026年4月 — 東京港（晴海・有明）への入港スケジュール
+          {currentMonthLabel} — 東京港（晴海・有明）への入港スケジュール
         </p>
         {lastUpdatedStr && (
           <span className={`text-xs px-2 py-0.5 bg-slate-100 rounded-full ${src.color}`}>
@@ -115,7 +121,7 @@ async function ScheduleContent() {
 
       {/* Stats */}
       <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 animate-fade-in-delay">
-        <StatCard label="4月の入港数" value={`${data.arrivals.length}件`} icon="🚢" color="slate" />
+        <StatCard label={`${currentMonthLabel}の入港数`} value={`${total}件`} icon="🚢" color="slate" />
         <StatCard label="晴海入港" value={`${harumi}件`} icon="⚓" color="sky" />
         <StatCard label="国際ターミナル" value={`${international}件`} icon="🌍" color="violet" />
         <StatCard label="最大旅客数" value="4,500名" icon="👥" color="amber" />
@@ -123,7 +129,7 @@ async function ScheduleContent() {
 
       {/* Calendar */}
       <section className="animate-fade-in-delay">
-        <ScheduleCalendar arrivals={data.arrivals} todayStr={todayStr} />
+        <ScheduleCalendar arrivals={data.arrivals} todayStr={todayStr} initialYearMonth={currentYM} />
       </section>
     </>
   );
