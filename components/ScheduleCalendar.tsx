@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PortArrival } from "@/data/schedule";
+import { lookupShip } from "@/data/shipDatabase";
 
 const TERMINAL_COLORS: Record<string, { bg: string; dot: string; border: string }> = {
   "晴海客船ターミナル": {
@@ -230,14 +231,21 @@ export default function ScheduleCalendar({ arrivals, todayStr, initialYearMonth 
             <ul className="divide-y divide-slate-100">
               {selectedArrivals.map((arrival) => {
                 const color = TERMINAL_COLORS[arrival.terminal] ?? DEFAULT_COLOR;
+                // shipDatabase で補完
+                const db = lookupShip(arrival.shipName);
+                const flag = (arrival.flag && arrival.flag !== "🚢" ? arrival.flag : null) ?? db?.flag ?? "🚢";
+                const nameEn = arrival.shipNameEn || db?.nameEn || "";
+                const operator = arrival.operator || db?.operator || "";
+                const grossTonnage = arrival.grossTonnage || db?.grossTonnage || "";
+                const passengers = arrival.passengers || db?.passengers || 0;
                 return (
                   <li key={arrival.id} className="px-5 py-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div>
                         <p className="font-bold text-slate-800 text-sm leading-tight">
-                          {arrival.flag} {arrival.shipName}
+                          {flag} {arrival.shipName}
                         </p>
-                        <p className="text-xs text-slate-400">{arrival.shipNameEn}</p>
+                        {nameEn && <p className="text-xs text-slate-400">{nameEn}</p>}
                       </div>
                       <span
                         className={`flex-shrink-0 text-xs font-medium px-2 py-0.5 rounded-full border ${color.bg} ${color.border} ${
@@ -250,12 +258,24 @@ export default function ScheduleCalendar({ arrivals, todayStr, initialYearMonth 
                       </span>
                     </div>
                     <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
-                      <span className="text-slate-400">運航会社</span>
-                      <span className="text-slate-700 font-medium">{arrival.operator}</span>
-                      <span className="text-slate-400">総トン数</span>
-                      <span className="text-slate-700 font-medium">{arrival.grossTonnage}</span>
-                      <span className="text-slate-400">旅客定員</span>
-                      <span className="text-slate-700 font-medium">{arrival.passengers.toLocaleString()}名</span>
+                      {operator && (
+                        <>
+                          <span className="text-slate-400">運航会社</span>
+                          <span className="text-slate-700 font-medium">{operator}</span>
+                        </>
+                      )}
+                      {grossTonnage && (
+                        <>
+                          <span className="text-slate-400">総トン数</span>
+                          <span className="text-slate-700 font-medium">{grossTonnage} GT</span>
+                        </>
+                      )}
+                      {passengers > 0 && (
+                        <>
+                          <span className="text-slate-400">旅客定員</span>
+                          <span className="text-slate-700 font-medium">{passengers.toLocaleString()}名</span>
+                        </>
+                      )}
                       {arrival.arrivalTime && (
                         <>
                           <span className="text-slate-400">入港</span>
