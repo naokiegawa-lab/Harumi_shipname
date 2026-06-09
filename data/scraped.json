@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-09T02:53:00.785Z",
+  "lastUpdated": "2026-06-09T09:39:45.026Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -1338,12 +1338,12 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-16-77",
+      "id": "scraped-2026-03-17-77",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
       "terminal": "二見港横浜横浜",
-      "arrivalDate": "2026-03-16",
+      "arrivalDate": "2026-03-17",
       "departureDate": "2026-03-17",
       "grossTonnage": "",
       "passengers": 0,
