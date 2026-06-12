@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12T03:42:02.272Z",
+  "lastUpdated": "2026-06-12T10:08:23.001Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -242,21 +242,6 @@
     },
     {
       "id": "scraped-2026-06-17-15",
-      "shipName": "飛鳥Ⅲ",
-      "shipNameEn": "",
-      "operator": "",
-      "terminal": "二見港神戸神戸",
-      "arrivalDate": "2026-06-17",
-      "departureDate": "2026-06-18",
-      "grossTonnage": "",
-      "passengers": 0,
-      "length": "",
-      "builtYear": 0,
-      "flag": "🚢",
-      "type": "クルーズ客船"
-    },
-    {
-      "id": "scraped-2026-06-17-16",
       "shipName": "ハンセアティック・インスピレーション",
       "shipNameEn": "",
       "operator": "",
@@ -266,6 +251,23 @@
       "arrivalTime": "08:00",
       "departureTime": "23:00",
       "previousPort": "清水",
+      "grossTonnage": "",
+      "passengers": 0,
+      "length": "",
+      "builtYear": 0,
+      "flag": "🚢",
+      "type": "クルーズ客船"
+    },
+    {
+      "id": "scraped-2026-06-17-16",
+      "shipName": "飛鳥Ⅲ",
+      "shipNameEn": "",
+      "operator": "",
+      "terminal": "二見港神戸神戸初寄港",
+      "arrivalDate": "2026-06-17",
+      "departureDate": "2026-06-18",
+      "arrivalTime": "08:00",
+      "departureTime": "17:00",
       "grossTonnage": "",
       "passengers": 0,
       "length": "",
