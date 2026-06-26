@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T19:57:19.648Z",
+  "lastUpdated": "2026-06-26T03:27:50.750Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -161,6 +161,8 @@
       "terminal": "二見港横浜横浜",
       "arrivalDate": "2026-07-15",
       "departureDate": "2026-07-16",
+      "arrivalTime": "08:00",
+      "departureTime": "17:00",
       "grossTonnage": "",
       "passengers": 0,
       "length": "",
@@ -195,6 +197,8 @@
       "terminal": "二見港横浜横浜",
       "arrivalDate": "2026-07-01",
       "departureDate": "2026-07-02",
+      "arrivalTime": "08:00",
+      "departureTime": "17:00",
       "grossTonnage": "",
       "passengers": 0,
       "length": "",
