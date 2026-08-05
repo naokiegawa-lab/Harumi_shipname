@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-04T19:28:35.818Z",
+  "lastUpdated": "2026-08-05T02:12:18.934Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -93,7 +93,7 @@
       "arrivalDate": "2027-02-25",
       "departureDate": "2027-02-25",
       "arrivalTime": "05:30",
-      "departureTime": "19:00",
+      "departureTime": "16:30",
       "previousPort": "名古屋",
       "nextPort": "清水",
       "grossTonnage": "",
