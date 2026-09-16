@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-16T03:16:09.456Z",
+  "lastUpdated": "2026-09-16T10:50:09.613Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -703,7 +703,7 @@
       "arrivalDate": "2026-10-24",
       "departureDate": "2026-10-24",
       "arrivalTime": "08:00",
-      "departureTime": "19:00",
+      "departureTime": "22:00",
       "previousPort": "宮古",
       "nextPort": "清水",
       "grossTonnage": "",
@@ -984,7 +984,7 @@
       "arrivalDate": "2026-09-27",
       "departureDate": "2026-09-27",
       "arrivalTime": "08:00",
-      "departureTime": "22:00",
+      "departureTime": "19:00",
       "previousPort": "青森",
       "nextPort": "大阪",
       "grossTonnage": "",
@@ -1058,8 +1058,8 @@
       "operator": "",
       "terminal": "東京国際クルーズターミナル",
       "arrivalDate": "2026-09-17",
-      "departureDate": "2026-09-17",
-      "arrivalTime": "05:30",
+      "departureDate": "2026-09-19",
+      "arrivalTime": "03:30",
       "departureTime": "16:30",
       "previousPort": "常陸那",
       "nextPort": "珂青森",
