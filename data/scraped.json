@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-18T03:07:36.935Z",
+  "lastUpdated": "2026-09-18T10:33:04.012Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -1023,7 +1023,7 @@
       "departureDate": "2026-09-23",
       "arrivalTime": "08:00",
       "departureTime": "16:30",
-      "previousPort": "清水",
+      "previousPort": "鹿児島",
       "nextPort": "清水",
       "grossTonnage": "",
       "passengers": 0,
@@ -1039,9 +1039,9 @@
       "operator": "",
       "terminal": "晴海客船ターミナル",
       "arrivalDate": "2026-09-18",
-      "departureDate": "2026-09-19",
+      "departureDate": "2026-09-21",
       "arrivalTime": "12:00",
-      "departureTime": "19:00",
+      "departureTime": "21:00",
       "previousPort": "仙台",
       "nextPort": "大阪",
       "grossTonnage": "",
@@ -1061,8 +1061,8 @@
       "departureDate": "2026-09-19",
       "arrivalTime": "03:30",
       "departureTime": "16:30",
-      "previousPort": "常陸那",
-      "nextPort": "珂青森",
+      "previousPort": "常陸那珂秋田",
+      "nextPort": "出港日変更",
       "grossTonnage": "",
       "passengers": 0,
       "length": "",
