@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-23T21:04:31.505Z",
+  "lastUpdated": "2026-09-24T03:04:58.257Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -1021,7 +1021,7 @@
       "terminal": "東京国際クルーズターミナル",
       "arrivalDate": "2026-09-22",
       "departureDate": "2026-09-23",
-      "arrivalTime": "08:00",
+      "arrivalTime": "09:00",
       "departureTime": "16:30",
       "previousPort": "鹿児島",
       "nextPort": "清水",
@@ -1039,9 +1039,9 @@
       "operator": "",
       "terminal": "晴海客船ターミナル",
       "arrivalDate": "2026-09-18",
-      "departureDate": "2026-09-21",
+      "departureDate": "2026-09-22",
       "arrivalTime": "12:00",
-      "departureTime": "21:00",
+      "departureTime": "04:00",
       "previousPort": "仙台",
       "nextPort": "大阪",
       "grossTonnage": "",
