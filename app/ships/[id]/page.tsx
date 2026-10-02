@@ -6,6 +6,21 @@ import { getScheduleData } from "@/lib/getScheduleData";
 import { lookupShip } from "@/data/shipDatabase";
 import StatusBadge from "@/components/StatusBadge";
 import ScheduleTable from "@/components/ScheduleTable";
+import { ShipPhotoWithOverlayCredit } from "@/components/ShipPhoto";
+import type { ShipImage } from "@/data/shipDatabase";
+
+/** ヒーロー上部の外観写真（max-w-5xl 幅いっぱい。PC では横長の 21:9） */
+function HeroPhoto({ photo, shipName }: { photo?: ShipImage; shipName: string }) {
+  if (!photo) return null;
+  return (
+    <ShipPhotoWithOverlayCredit
+      image={photo}
+      alt={`${shipName}の外観`}
+      sizes="(min-width: 1024px) 1000px, 100vw"
+      aspectClassName="aspect-[16/9] sm:aspect-[21/9]"
+    />
+  );
+}
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -74,54 +89,57 @@ async function ScrapedShipDetail({ id }: { id: string }) {
         </div>
       </header>
       <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-8">
-        <section className="bg-gradient-to-br from-sky-600 to-blue-800 rounded-2xl p-8 mb-6 text-white animate-fade-in">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div>
-              <div className="text-sky-200 text-sm font-medium mb-2">{arrival.terminal} · {arrival.type}</div>
-              <h1 className="text-3xl sm:text-4xl font-bold mb-1">{flag} {arrival.shipName}</h1>
-              {nameEn && <p className="text-sky-200 text-lg">{nameEn}</p>}
-              {operator && <p className="text-sky-100 text-sm mt-2">{operator}</p>}
-            </div>
-            <StatusBadge status={status} />
-          </div>
-          <div className="mt-6 pt-6 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
-            <div><p className="text-sky-300 text-xs mb-1">入港日</p><p className="font-semibold">{arrival.arrivalDate}{arrival.arrivalTime ? ` ${arrival.arrivalTime}` : ""}</p></div>
-            <div><p className="text-sky-300 text-xs mb-1">出港日</p><p className="font-semibold">{arrival.departureDate}{arrival.departureTime ? ` ${arrival.departureTime}` : ""}</p></div>
-            {grossTonnage && <div><p className="text-sky-300 text-xs mb-1">総トン数</p><p className="font-semibold">{grossTonnage} GT</p></div>}
-            {passengers > 0 && <div><p className="text-sky-300 text-xs mb-1">旅客定員</p><p className="font-semibold">{passengers.toLocaleString()}名</p></div>}
-          </div>
-          {(arrival.previousPort || arrival.nextPort) && (
-            <div className="mt-6 pt-6 border-t border-white/20">
-              <div className="flex items-center justify-center gap-3 text-sm">
-                {arrival.previousPort && (
-                  <div className="text-center">
-                    <p className="text-sky-300 text-xs mb-1">前港</p>
-                    <p className="font-semibold">{arrival.previousPort}</p>
-                  </div>
-                )}
-                <div className="text-sky-300 text-lg">→</div>
-                <div className="text-center">
-                  <p className="text-sky-300 text-xs mb-1">当港</p>
-                  <p className="font-bold">{arrival.terminal === "晴海客船ターミナル" ? "晴海" : "東京"}</p>
-                </div>
-                {arrival.nextPort && (
-                  <>
-                    <div className="text-sky-300 text-lg">→</div>
-                    <div className="text-center">
-                      <p className="text-sky-300 text-xs mb-1">次港</p>
-                      <p className="font-semibold">{arrival.nextPort}</p>
-                    </div>
-                  </>
-                )}
+        <section className="rounded-2xl overflow-hidden mb-6 text-white animate-fade-in">
+          <HeroPhoto photo={db?.image} shipName={arrival.shipName} />
+          <div className="bg-gradient-to-br from-sky-600 to-blue-800 p-8">
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <div>
+                <div className="text-sky-200 text-sm font-medium mb-2">{arrival.terminal} · {arrival.type}</div>
+                <h1 className="text-3xl sm:text-4xl font-bold mb-1">{flag} {arrival.shipName}</h1>
+                {nameEn && <p className="text-sky-200 text-lg">{nameEn}</p>}
+                {operator && <p className="text-sky-100 text-sm mt-2">{operator}</p>}
               </div>
+              <StatusBadge status={status} />
             </div>
-          )}
-          {(length || builtYear > 0) && (
-            <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
-              {length && <div><p className="text-sky-300 text-xs mb-1">全長</p><p className="font-semibold">{length}</p></div>}
-              {builtYear > 0 && <div><p className="text-sky-300 text-xs mb-1">就航年</p><p className="font-semibold">{builtYear}年</p></div>}
+            <div className="mt-6 pt-6 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+              <div><p className="text-sky-300 text-xs mb-1">入港日</p><p className="font-semibold">{arrival.arrivalDate}{arrival.arrivalTime ? ` ${arrival.arrivalTime}` : ""}</p></div>
+              <div><p className="text-sky-300 text-xs mb-1">出港日</p><p className="font-semibold">{arrival.departureDate}{arrival.departureTime ? ` ${arrival.departureTime}` : ""}</p></div>
+              {grossTonnage && <div><p className="text-sky-300 text-xs mb-1">総トン数</p><p className="font-semibold">{grossTonnage} GT</p></div>}
+              {passengers > 0 && <div><p className="text-sky-300 text-xs mb-1">旅客定員</p><p className="font-semibold">{passengers.toLocaleString()}名</p></div>}
             </div>
-          )}
+            {(arrival.previousPort || arrival.nextPort) && (
+              <div className="mt-6 pt-6 border-t border-white/20">
+                <div className="flex items-center justify-center gap-3 text-sm">
+                  {arrival.previousPort && (
+                    <div className="text-center">
+                      <p className="text-sky-300 text-xs mb-1">前港</p>
+                      <p className="font-semibold">{arrival.previousPort}</p>
+                    </div>
+                  )}
+                  <div className="text-sky-300 text-lg">→</div>
+                  <div className="text-center">
+                    <p className="text-sky-300 text-xs mb-1">当港</p>
+                    <p className="font-bold">{arrival.terminal === "晴海客船ターミナル" ? "晴海" : "東京"}</p>
+                  </div>
+                  {arrival.nextPort && (
+                    <>
+                      <div className="text-sky-300 text-lg">→</div>
+                      <div className="text-center">
+                        <p className="text-sky-300 text-xs mb-1">次港</p>
+                        <p className="font-semibold">{arrival.nextPort}</p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+            {(length || builtYear > 0) && (
+              <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+                {length && <div><p className="text-sky-300 text-xs mb-1">全長</p><p className="font-semibold">{length}</p></div>}
+                {builtYear > 0 && <div><p className="text-sky-300 text-xs mb-1">就航年</p><p className="font-semibold">{builtYear}年</p></div>}
+              </div>
+            )}
+          </div>
         </section>
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-700 text-sm">
           ℹ️ このデータは東京都港湾局の入港予定から自動取得されたものです。詳細な船舶情報は各運航会社にお問い合わせください。
@@ -161,27 +179,30 @@ function StaticShipDetail({ ship }: { ship: Ship }) {
 
       <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-8">
         {/* Hero section */}
-        <section className="bg-gradient-to-br from-sky-600 to-blue-800 rounded-2xl p-8 mb-6 text-white animate-fade-in">
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div>
-              <div className="text-sky-200 text-sm font-medium mb-2 flex items-center gap-2">
-                <span>{ship.berthNumber}</span>
-                <span>·</span>
-                <span>{ship.type}</span>
+        <section className="rounded-2xl overflow-hidden mb-6 text-white animate-fade-in">
+          <HeroPhoto photo={lookupShip(ship.name)?.image} shipName={ship.name} />
+          <div className="bg-gradient-to-br from-sky-600 to-blue-800 p-8">
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <div>
+                <div className="text-sky-200 text-sm font-medium mb-2 flex items-center gap-2">
+                  <span>{ship.berthNumber}</span>
+                  <span>·</span>
+                  <span>{ship.type}</span>
+                </div>
+                <h1 className="text-3xl sm:text-4xl font-bold mb-1">
+                  {ship.flag} {ship.name}
+                </h1>
+                <p className="text-sky-200 text-lg">{ship.nameEn}</p>
+                <p className="text-sky-100 text-sm mt-2">{ship.operator}</p>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold mb-1">
-                {ship.flag} {ship.name}
-              </h1>
-              <p className="text-sky-200 text-lg">{ship.nameEn}</p>
-              <p className="text-sky-100 text-sm mt-2">{ship.operator}</p>
+              <StatusBadge status={ship.status} />
             </div>
-            <StatusBadge status={ship.status} />
-          </div>
-
-          <div className="mt-6 pt-6 border-t border-white/20">
-            <div className="flex items-center gap-2 text-sky-100">
-              <span className="text-xl">🗺</span>
-              <span className="text-sm font-medium">{ship.route}</span>
+  
+            <div className="mt-6 pt-6 border-t border-white/20">
+              <div className="flex items-center gap-2 text-sky-100">
+                <span className="text-xl">🗺</span>
+                <span className="text-sm font-medium">{ship.route}</span>
+              </div>
             </div>
           </div>
         </section>

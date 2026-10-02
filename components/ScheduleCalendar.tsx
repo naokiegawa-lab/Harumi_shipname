@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PortArrival } from "@/data/schedule";
 import { lookupShip } from "@/data/shipDatabase";
+import ShipPhoto from "./ShipPhoto";
 
 const TERMINAL_COLORS: Record<string, { bg: string; dot: string; border: string }> = {
   "晴海客船ターミナル": {
@@ -240,6 +241,13 @@ export default function ScheduleCalendar({ arrivals, todayStr, initialYearMonth 
                 const passengers = arrival.passengers || db?.passengers || 0;
                 return (
                   <li key={arrival.id} className="px-5 py-4">
+                    {db?.image && (
+                      <ShipPhoto
+                        image={db.image}
+                        alt={`${arrival.shipName}の外観`}
+                        sizes="(min-width: 1024px) 380px, 100vw"
+                      />
+                    )}
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div>
                         <p className="font-bold text-slate-800 text-sm leading-tight">

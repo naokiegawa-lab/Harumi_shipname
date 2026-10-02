@@ -1,3 +1,5 @@
+import type { ShipImage } from "./shipDatabase";
+
 export type Ship = {
   id: string;
   name: string;
@@ -18,6 +20,8 @@ export type Ship = {
   status: "接岸中" | "出港準備中" | "停泊中";
   berthNumber: string;
   image: string;
+  /** Wikimedia Commons の外観写真（shipDatabase から補完） */
+  photo?: ShipImage;
   description: string;
   schedules: Schedule[];
   facilities: string[];

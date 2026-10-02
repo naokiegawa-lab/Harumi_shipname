@@ -6,6 +6,17 @@
  */
 import dbJson from "./shipDatabase.json";
 
+/** Wikimedia Commons の外観写真（scripts/fetch-ship-images.mjs が登録） */
+export type ShipImage = {
+  /** サムネイル画像 URL */
+  url: string;
+  /** Commons のファイルページ（出典） */
+  pageUrl: string;
+  author: string;
+  license: string;
+  licenseUrl?: string;
+};
+
 export type ShipInfo = {
   nameEn: string;
   operator: string;
@@ -14,6 +25,7 @@ export type ShipInfo = {
   builtYear: number;
   flag: string;
   length?: string;
+  image?: ShipImage;
 };
 
 const DB: Record<string, ShipInfo> = dbJson as Record<string, ShipInfo>;

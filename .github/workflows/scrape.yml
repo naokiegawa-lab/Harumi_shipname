@@ -52,6 +52,11 @@ jobs:
         run: node scripts/enrich-ships.mjs
         continue-on-error: true
 
+      - name: 船舶写真を自動取得（Wikimedia Commons）
+        id: images
+        run: node scripts/fetch-ship-images.mjs
+        continue-on-error: true
+
       - name: 変更をコミット＆プッシュ
         run: |
           git config user.name  "github-actions[bot]"
@@ -64,7 +69,8 @@ jobs:
 
             更新日時: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
             スクレイプ結果: ${{ steps.scrape.outcome }}
-            船舶DB補完: ${{ steps.enrich.outcome }}"
+            船舶DB補完: ${{ steps.enrich.outcome }}
+            船舶写真: ${{ steps.images.outcome }}"
             git pull --rebase origin main
             git push
           fi

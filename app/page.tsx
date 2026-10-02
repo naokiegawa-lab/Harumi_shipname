@@ -122,6 +122,7 @@ function arrivalToShip(arrival: PortArrival, today: string): Ship {
     status,
     berthNumber: arrival.terminal,
     image: "",
+    photo: db?.image,
     description: "",
     schedules: [],
     facilities: [],
