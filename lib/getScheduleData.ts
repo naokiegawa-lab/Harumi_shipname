@@ -7,14 +7,16 @@ export type ScrapedData = {
   arrivals: PortArrival[];
 };
 
-const SCRAPED_JSON_PATH = ["data", "scraped.json"];
+// パスは path.join(process.cwd(), "data", "scraped.json") と直書きすること。
+// 変数や配列展開にすると Vercel のファイルトレースが追えず、本番に同梱されない
+// （next.config.ts の outputFileTracingIncludes でも明示している）
 
 /** scraped.json の更新時刻（ミリ秒）。取得できなければ 0 */
 async function getScrapedMtimeMs(): Promise<number> {
   try {
     const fs = await import("fs/promises");
     const path = await import("path");
-    const stat = await fs.stat(path.join(process.cwd(), ...SCRAPED_JSON_PATH));
+    const stat = await fs.stat(path.join(process.cwd(), "data", "scraped.json"));
     return stat.mtimeMs;
   } catch {
     return 0;
@@ -26,7 +28,7 @@ async function loadScrapedJson(): Promise<ScrapedData> {
   try {
     const fs = await import("fs/promises");
     const path = await import("path");
-    const filePath = path.join(process.cwd(), ...SCRAPED_JSON_PATH);
+    const filePath = path.join(process.cwd(), "data", "scraped.json");
     const raw = await fs.readFile(filePath, "utf-8");
     const json = JSON.parse(raw) as ScrapedData;
     if (!json.arrivals || json.arrivals.length === 0) {
