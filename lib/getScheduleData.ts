@@ -7,12 +7,26 @@ export type ScrapedData = {
   arrivals: PortArrival[];
 };
 
+const SCRAPED_JSON_PATH = ["data", "scraped.json"];
+
+/** scraped.json の更新時刻（ミリ秒）。取得できなければ 0 */
+async function getScrapedMtimeMs(): Promise<number> {
+  try {
+    const fs = await import("fs/promises");
+    const path = await import("path");
+    const stat = await fs.stat(path.join(process.cwd(), ...SCRAPED_JSON_PATH));
+    return stat.mtimeMs;
+  } catch {
+    return 0;
+  }
+}
+
 /** scrape結果JSONを読み込む（サーバーサイドのみ） */
 async function loadScrapedJson(): Promise<ScrapedData> {
   try {
     const fs = await import("fs/promises");
     const path = await import("path");
-    const filePath = path.join(process.cwd(), "data", "scraped.json");
+    const filePath = path.join(process.cwd(), ...SCRAPED_JSON_PATH);
     const raw = await fs.readFile(filePath, "utf-8");
     const json = JSON.parse(raw) as ScrapedData;
     if (!json.arrivals || json.arrivals.length === 0) {
@@ -25,12 +39,21 @@ async function loadScrapedJson(): Promise<ScrapedData> {
 }
 
 /**
- * スケジュールデータ取得（use cache + cacheTag でタグ付きキャッシュ）
- * revalidateTag("schedule", "max") で即時無効化可能
+ * scraped.json の更新時刻を引数（= キャッシュキー）に含めてキャッシュする。
+ * ファイルが差し替わった（git pull / 再デプロイ）ときに TTL を待たず再読込される。
  */
-export async function getScheduleData(): Promise<ScrapedData> {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- キャッシュキーとしてのみ使用
+async function getCachedScheduleData(_mtimeMs: number): Promise<ScrapedData> {
   "use cache";
   cacheTag("schedule");
   cacheLife("hours"); // 1時間 TTL
   return loadScrapedJson();
+}
+
+/**
+ * スケジュールデータ取得（use cache + cacheTag でタグ付きキャッシュ）
+ * revalidateTag("schedule", "max") で即時無効化可能
+ */
+export async function getScheduleData(): Promise<ScrapedData> {
+  return getCachedScheduleData(await getScrapedMtimeMs());
 }
