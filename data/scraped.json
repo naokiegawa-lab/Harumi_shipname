@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-06T04:47:50.321Z",
+  "lastUpdated": "2026-10-06T12:44:30.991Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -845,6 +845,23 @@
     },
     {
       "id": "scraped-2026-10-10-51",
+      "shipName": "ルミナーラ",
+      "shipNameEn": "",
+      "operator": "",
+      "terminal": "東京国際クルーズターミナル",
+      "arrivalDate": "2026-10-10",
+      "departureDate": "2026-10-10",
+      "arrivalTime": "06:30",
+      "departureTime": "19:00",
+      "grossTonnage": "",
+      "passengers": 0,
+      "length": "",
+      "builtYear": 0,
+      "flag": "🚢",
+      "type": "クルーズ客船"
+    },
+    {
+      "id": "scraped-2026-10-10-52",
       "shipName": "シーボーン・アンコール",
       "shipNameEn": "",
       "operator": "",
@@ -862,7 +879,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-10-09-52",
+      "id": "scraped-2026-10-09-53",
       "shipName": "カーニバル・ルミノーザ",
       "shipNameEn": "",
       "operator": "",
@@ -881,7 +898,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-10-07-53",
+      "id": "scraped-2026-10-07-54",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -900,7 +917,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-10-04-54",
+      "id": "scraped-2026-10-04-55",
       "shipName": "ロイヤル・プリンセス",
       "shipNameEn": "",
       "operator": "",
@@ -919,7 +936,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-10-03-55",
+      "id": "scraped-2026-10-03-56",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -938,7 +955,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-10-01-56",
+      "id": "scraped-2026-10-01-57",
       "shipName": "アザマラ・パシュート",
       "shipNameEn": "",
       "operator": "",
@@ -957,7 +974,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-30-57",
+      "id": "scraped-2026-09-30-58",
       "shipName": "三井オーシャンサクラ",
       "shipNameEn": "",
       "operator": "",
@@ -976,7 +993,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-27-58",
+      "id": "scraped-2026-09-27-59",
       "shipName": "ウエステルダム",
       "shipNameEn": "",
       "operator": "",
@@ -995,7 +1012,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-26-59",
+      "id": "scraped-2026-09-26-60",
       "shipName": "バイキング・ビーナス",
       "shipNameEn": "",
       "operator": "",
@@ -1014,7 +1031,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-22-60",
+      "id": "scraped-2026-09-22-61",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1033,7 +1050,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-18-61",
+      "id": "scraped-2026-09-18-62",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -1052,7 +1069,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-17-62",
+      "id": "scraped-2026-09-17-63",
       "shipName": "アザマラ・パシュート",
       "shipNameEn": "",
       "operator": "",
@@ -1071,7 +1088,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-16-63",
+      "id": "scraped-2026-09-16-64",
       "shipName": "スター・シーカー",
       "shipNameEn": "",
       "operator": "",
@@ -1090,7 +1107,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-10-64",
+      "id": "scraped-2026-09-10-65",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1109,7 +1126,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-09-01-65",
+      "id": "scraped-2026-09-01-66",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -1127,7 +1144,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-08-30-66",
+      "id": "scraped-2026-08-30-67",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1146,7 +1163,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-08-25-67",
+      "id": "scraped-2026-08-25-68",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -1165,7 +1182,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-08-17-68",
+      "id": "scraped-2026-08-17-69",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1184,7 +1201,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-08-16-69",
+      "id": "scraped-2026-08-16-70",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -1202,7 +1219,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-08-06-70",
+      "id": "scraped-2026-08-06-71",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1221,7 +1238,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-08-03-71",
+      "id": "scraped-2026-08-03-72",
       "shipName": "飛鳥Ⅱ",
       "shipNameEn": "",
       "operator": "",
@@ -1240,7 +1257,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-07-24-72",
+      "id": "scraped-2026-07-24-73",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1259,7 +1276,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-07-15-73",
+      "id": "scraped-2026-07-15-74",
       "shipName": "飛鳥Ⅲ",
       "shipNameEn": "",
       "operator": "",
@@ -1276,7 +1293,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-07-12-74",
+      "id": "scraped-2026-07-12-75",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1295,7 +1312,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-07-01-75",
+      "id": "scraped-2026-07-01-76",
       "shipName": "飛鳥Ⅲ",
       "shipNameEn": "",
       "operator": "",
@@ -1312,7 +1329,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-06-30-76",
+      "id": "scraped-2026-06-30-77",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1331,7 +1348,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-06-18-77",
+      "id": "scraped-2026-06-18-78",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1350,7 +1367,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-06-17-78",
+      "id": "scraped-2026-06-17-79",
       "shipName": "ハンセアティック・インスピレーション",
       "shipNameEn": "",
       "operator": "",
@@ -1368,7 +1385,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-06-17-79",
+      "id": "scraped-2026-06-17-80",
       "shipName": "飛鳥Ⅲ",
       "shipNameEn": "",
       "operator": "",
@@ -1385,7 +1402,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-06-12-80",
+      "id": "scraped-2026-06-12-81",
       "shipName": "クリスタル・シンフォニー",
       "shipNameEn": "",
       "operator": "",
@@ -1404,7 +1421,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-06-09-81",
+      "id": "scraped-2026-06-09-82",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -1423,7 +1440,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-06-06-82",
+      "id": "scraped-2026-06-06-83",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1442,7 +1459,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-31-83",
+      "id": "scraped-2026-05-31-84",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -1461,7 +1478,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-28-84",
+      "id": "scraped-2026-05-28-85",
       "shipName": "アイランドスカイ",
       "shipNameEn": "",
       "operator": "",
@@ -1480,7 +1497,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-25-85",
+      "id": "scraped-2026-05-25-86",
       "shipName": "スペクトラム・オブ・ザ・シーズ",
       "shipNameEn": "",
       "operator": "",
@@ -1499,7 +1516,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-24-86",
+      "id": "scraped-2026-05-24-87",
       "shipName": "バイキング・オリオン",
       "shipNameEn": "",
       "operator": "",
@@ -1518,7 +1535,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-22-87",
+      "id": "scraped-2026-05-22-88",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -1537,7 +1554,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-20-88",
+      "id": "scraped-2026-05-20-89",
       "shipName": "クリスタル・シンフォニー",
       "shipNameEn": "",
       "operator": "",
@@ -1556,7 +1573,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-17-89",
+      "id": "scraped-2026-05-17-90",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -1574,7 +1591,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-14-90",
+      "id": "scraped-2026-05-14-91",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1593,7 +1610,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-13-91",
+      "id": "scraped-2026-05-13-92",
       "shipName": "ルミナーラ",
       "shipNameEn": "",
       "operator": "",
@@ -1612,7 +1629,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-10-92",
+      "id": "scraped-2026-05-10-93",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -1631,7 +1648,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-09-93",
+      "id": "scraped-2026-05-09-94",
       "shipName": "クリスタル・シンフォニー",
       "shipNameEn": "",
       "operator": "",
@@ -1650,7 +1667,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-08-94",
+      "id": "scraped-2026-05-08-95",
       "shipName": "アザマラ・パシュート",
       "shipNameEn": "",
       "operator": "",
@@ -1669,7 +1686,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-05-95",
+      "id": "scraped-2026-05-05-96",
       "shipName": "バイキング・ビーナス",
       "shipNameEn": "",
       "operator": "",
@@ -1688,7 +1705,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-05-96",
+      "id": "scraped-2026-05-05-97",
       "shipName": "リビエラ",
       "shipNameEn": "",
       "operator": "",
@@ -1707,7 +1724,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-04-97",
+      "id": "scraped-2026-05-04-98",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -1725,7 +1742,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-03-98",
+      "id": "scraped-2026-05-03-99",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -1743,7 +1760,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-02-99",
+      "id": "scraped-2026-05-02-100",
       "shipName": "ルミナーラ",
       "shipNameEn": "",
       "operator": "",
@@ -1762,7 +1779,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-05-01-100",
+      "id": "scraped-2026-05-01-101",
       "shipName": "セレブリティ・ミレニアム",
       "shipNameEn": "",
       "operator": "",
@@ -1781,7 +1798,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-30-101",
+      "id": "scraped-2026-04-30-102",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -1799,7 +1816,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-29-102",
+      "id": "scraped-2026-04-29-103",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -1817,7 +1834,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-27-103",
+      "id": "scraped-2026-04-27-104",
       "shipName": "シーボーン・アンコール",
       "shipNameEn": "",
       "operator": "",
@@ -1835,7 +1852,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-24-104",
+      "id": "scraped-2026-04-24-105",
       "shipName": "シーボーン・ソジャーン",
       "shipNameEn": "",
       "operator": "",
@@ -1854,7 +1871,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-23-105",
+      "id": "scraped-2026-04-23-106",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -1873,7 +1890,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-23-106",
+      "id": "scraped-2026-04-23-107",
       "shipName": "アザマラ・パシュート",
       "shipNameEn": "",
       "operator": "",
@@ -1892,7 +1909,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-22-107",
+      "id": "scraped-2026-04-22-108",
       "shipName": "ルミナーラ",
       "shipNameEn": "",
       "operator": "",
@@ -1911,7 +1928,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-22-108",
+      "id": "scraped-2026-04-22-109",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -1930,7 +1947,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-20-109",
+      "id": "scraped-2026-04-20-110",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -1949,7 +1966,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-20-110",
+      "id": "scraped-2026-04-20-111",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -1968,7 +1985,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-19-111",
+      "id": "scraped-2026-04-19-112",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -1987,7 +2004,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-17-112",
+      "id": "scraped-2026-04-17-113",
       "shipName": "クリスタル・シンフォニー",
       "shipNameEn": "",
       "operator": "",
@@ -2006,7 +2023,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-15-113",
+      "id": "scraped-2026-04-15-114",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -2025,7 +2042,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-14-114",
+      "id": "scraped-2026-04-14-115",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -2042,7 +2059,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-14-115",
+      "id": "scraped-2026-04-14-116",
       "shipName": "マイン・シフ６",
       "shipNameEn": "",
       "operator": "",
@@ -2061,7 +2078,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-13-116",
+      "id": "scraped-2026-04-13-117",
       "shipName": "シーボーン・アンコール",
       "shipNameEn": "",
       "operator": "",
@@ -2080,7 +2097,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-11-117",
+      "id": "scraped-2026-04-11-118",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -2099,7 +2116,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-09-118",
+      "id": "scraped-2026-04-09-119",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -2118,7 +2135,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-08-119",
+      "id": "scraped-2026-04-08-120",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -2137,7 +2154,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-06-120",
+      "id": "scraped-2026-04-06-121",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -2156,7 +2173,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-06-121",
+      "id": "scraped-2026-04-06-122",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -2175,7 +2192,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-04-122",
+      "id": "scraped-2026-04-04-123",
       "shipName": "クリスタル・シンフォニー",
       "shipNameEn": "",
       "operator": "",
@@ -2194,7 +2211,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-03-123",
+      "id": "scraped-2026-04-03-124",
       "shipName": "レガッタ",
       "shipNameEn": "",
       "operator": "",
@@ -2213,7 +2230,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-04-01-124",
+      "id": "scraped-2026-04-01-125",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -2232,7 +2249,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-31-125",
+      "id": "scraped-2026-03-31-126",
       "shipName": "ヘリテージ・アドベンチャラー",
       "shipNameEn": "",
       "operator": "",
@@ -2251,7 +2268,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-30-126",
+      "id": "scraped-2026-03-30-127",
       "shipName": "ルミナーラ",
       "shipNameEn": "",
       "operator": "",
@@ -2270,7 +2287,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-30-127",
+      "id": "scraped-2026-03-30-128",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -2288,7 +2305,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-29-128",
+      "id": "scraped-2026-03-29-129",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -2305,7 +2322,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-26-129",
+      "id": "scraped-2026-03-26-130",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -2324,7 +2341,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-26-130",
+      "id": "scraped-2026-03-26-131",
       "shipName": "アザマラ・パシュート",
       "shipNameEn": "",
       "operator": "",
@@ -2343,7 +2360,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-25-131",
+      "id": "scraped-2026-03-25-132",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -2362,7 +2379,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-23-132",
+      "id": "scraped-2026-03-23-133",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -2381,7 +2398,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-23-133",
+      "id": "scraped-2026-03-23-134",
       "shipName": "MSCマニフィカ",
       "shipNameEn": "",
       "operator": "",
@@ -2400,7 +2417,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-22-134",
+      "id": "scraped-2026-03-22-135",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -2417,7 +2434,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-22-135",
+      "id": "scraped-2026-03-22-136",
       "shipName": "レガッタ",
       "shipNameEn": "",
       "operator": "",
@@ -2436,7 +2453,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-20-136",
+      "id": "scraped-2026-03-20-137",
       "shipName": "ルミナーラ",
       "shipNameEn": "",
       "operator": "",
@@ -2455,7 +2472,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-17-137",
+      "id": "scraped-2026-03-17-138",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -2472,7 +2489,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-16-138",
+      "id": "scraped-2026-03-16-139",
       "shipName": "シーボーン・アンコール",
       "shipNameEn": "",
       "operator": "",
@@ -2491,7 +2508,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-14-139",
+      "id": "scraped-2026-03-14-140",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -2510,7 +2527,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-12-140",
+      "id": "scraped-2026-03-12-141",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -2529,7 +2546,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-08-141",
+      "id": "scraped-2026-03-08-142",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -2548,7 +2565,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-03-07-142",
+      "id": "scraped-2026-03-07-143",
       "shipName": "アマデア",
       "shipNameEn": "",
       "operator": "",
@@ -2567,7 +2584,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-02-24-143",
+      "id": "scraped-2026-02-24-144",
       "shipName": "ディズニーアドベンチャー",
       "shipNameEn": "",
       "operator": "",
@@ -2586,7 +2603,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-02-07-144",
+      "id": "scraped-2026-02-07-145",
       "shipName": "コスタ・デリチョーザ",
       "shipNameEn": "",
       "operator": "",
@@ -2605,7 +2622,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-25-145",
+      "id": "scraped-2026-01-25-146",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -2624,7 +2641,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-24-146",
+      "id": "scraped-2026-01-24-147",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -2643,7 +2660,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-23-147",
+      "id": "scraped-2026-01-23-148",
       "shipName": "コスタ・セレーナ",
       "shipNameEn": "",
       "operator": "",
@@ -2662,7 +2679,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-14-148",
+      "id": "scraped-2026-01-14-149",
       "shipName": "アイーダ・ディーバ",
       "shipNameEn": "",
       "operator": "",
@@ -2681,7 +2698,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-10-149",
+      "id": "scraped-2026-01-10-150",
       "shipName": "シーボーン・アンコール",
       "shipNameEn": "",
       "operator": "",
@@ -2700,7 +2717,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-09-150",
+      "id": "scraped-2026-01-09-151",
       "shipName": "飛鳥Ⅱ",
       "shipNameEn": "",
       "operator": "",
@@ -2719,7 +2736,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-07-151",
+      "id": "scraped-2026-01-07-152",
       "shipName": "飛鳥Ⅱ",
       "shipNameEn": "",
       "operator": "",
@@ -2737,7 +2754,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-05-152",
+      "id": "scraped-2026-01-05-153",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -2756,7 +2773,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2026-01-04-153",
+      "id": "scraped-2026-01-04-154",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -2775,7 +2792,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-12-26-154",
+      "id": "scraped-2025-12-26-155",
       "shipName": "コスタ・セレーナ",
       "shipNameEn": "",
       "operator": "",
@@ -2794,7 +2811,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-12-26-155",
+      "id": "scraped-2025-12-26-156",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -2812,7 +2829,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-12-18-156",
+      "id": "scraped-2025-12-18-157",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -2831,7 +2848,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-12-06-157",
+      "id": "scraped-2025-12-06-158",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -2848,7 +2865,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-11-28-158",
+      "id": "scraped-2025-11-28-159",
       "shipName": "コスタ・セレーナ",
       "shipNameEn": "",
       "operator": "",
@@ -2867,7 +2884,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-11-25-159",
+      "id": "scraped-2025-11-25-160",
       "shipName": "ノルウェージャン・サン",
       "shipNameEn": "",
       "operator": "",
@@ -2886,7 +2903,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-11-12-160",
+      "id": "scraped-2025-11-12-161",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -2905,7 +2922,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-11-08-161",
+      "id": "scraped-2025-11-08-162",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -2924,7 +2941,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-11-03-162",
+      "id": "scraped-2025-11-03-163",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -2943,7 +2960,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-11-01-163",
+      "id": "scraped-2025-11-01-164",
       "shipName": "コーラル・ジオグラファー",
       "shipNameEn": "",
       "operator": "",
@@ -2962,7 +2979,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-11-01-164",
+      "id": "scraped-2025-11-01-165",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -2981,7 +2998,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-31-165",
+      "id": "scraped-2025-10-31-166",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -3000,7 +3017,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-28-166",
+      "id": "scraped-2025-10-28-167",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -3019,7 +3036,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-27-167",
+      "id": "scraped-2025-10-27-168",
       "shipName": "ウエステルダム",
       "shipNameEn": "",
       "operator": "",
@@ -3038,7 +3055,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-25-168",
+      "id": "scraped-2025-10-25-169",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3057,7 +3074,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-23-169",
+      "id": "scraped-2025-10-23-170",
       "shipName": "飛鳥Ⅱ",
       "shipNameEn": "",
       "operator": "",
@@ -3074,7 +3091,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-20-170",
+      "id": "scraped-2025-10-20-171",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3093,7 +3110,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-17-171",
+      "id": "scraped-2025-10-17-172",
       "shipName": "ハンセアティック・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -3110,7 +3127,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-17-172",
+      "id": "scraped-2025-10-17-173",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -3129,7 +3146,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-14-173",
+      "id": "scraped-2025-10-14-174",
       "shipName": "ディスカバリー・プリンセス",
       "shipNameEn": "",
       "operator": "",
@@ -3148,7 +3165,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-13-174",
+      "id": "scraped-2025-10-13-175",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3167,7 +3184,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-12-175",
+      "id": "scraped-2025-10-12-176",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -3186,7 +3203,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-06-176",
+      "id": "scraped-2025-10-06-177",
       "shipName": "バイキング・オリオン",
       "shipNameEn": "",
       "operator": "",
@@ -3205,7 +3222,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-04-177",
+      "id": "scraped-2025-10-04-178",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3224,7 +3241,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-10-01-178",
+      "id": "scraped-2025-10-01-179",
       "shipName": "シルバー・ムーン",
       "shipNameEn": "",
       "operator": "",
@@ -3243,7 +3260,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-09-25-179",
+      "id": "scraped-2025-09-25-180",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3262,7 +3279,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-09-20-180",
+      "id": "scraped-2025-09-20-181",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -3279,7 +3296,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-09-18-181",
+      "id": "scraped-2025-09-18-182",
       "shipName": "スペクトラム・オブ・ザ・シーズ",
       "shipNameEn": "",
       "operator": "",
@@ -3298,7 +3315,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-09-16-182",
+      "id": "scraped-2025-09-16-183",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3317,7 +3334,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-09-12-183",
+      "id": "scraped-2025-09-12-184",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -3336,7 +3353,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-09-10-184",
+      "id": "scraped-2025-09-10-185",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3354,7 +3371,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-09-09-185",
+      "id": "scraped-2025-09-09-186",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -3373,7 +3390,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-08-23-186",
+      "id": "scraped-2025-08-23-187",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -3392,7 +3409,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-08-16-187",
+      "id": "scraped-2025-08-16-188",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -3411,7 +3428,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-08-07-188",
+      "id": "scraped-2025-08-07-189",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -3430,7 +3447,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-07-31-189",
+      "id": "scraped-2025-07-31-190",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -3449,7 +3466,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-07-26-190",
+      "id": "scraped-2025-07-26-191",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -3468,7 +3485,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-07-21-191",
+      "id": "scraped-2025-07-21-192",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -3485,7 +3502,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-07-16-192",
+      "id": "scraped-2025-07-16-193",
       "shipName": "ブルードリームメロディ",
       "shipNameEn": "",
       "operator": "",
@@ -3504,7 +3521,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-07-12-193",
+      "id": "scraped-2025-07-12-194",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -3523,7 +3540,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-07-06-194",
+      "id": "scraped-2025-07-06-195",
       "shipName": "飛鳥Ⅲ",
       "shipNameEn": "",
       "operator": "",
@@ -3541,7 +3558,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-07-04-195",
+      "id": "scraped-2025-07-04-196",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -3560,7 +3577,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-07-02-196",
+      "id": "scraped-2025-07-02-197",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -3577,7 +3594,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-06-28-197",
+      "id": "scraped-2025-06-28-198",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -3596,7 +3613,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-06-14-198",
+      "id": "scraped-2025-06-14-199",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -3615,7 +3632,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-06-10-199",
+      "id": "scraped-2025-06-10-200",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -3634,7 +3651,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-06-05-200",
+      "id": "scraped-2025-06-05-201",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3653,7 +3670,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-27-201",
+      "id": "scraped-2025-05-27-202",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3672,7 +3689,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-21-202",
+      "id": "scraped-2025-05-21-203",
       "shipName": "レガッタ",
       "shipNameEn": "",
       "operator": "",
@@ -3691,7 +3708,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-20-203",
+      "id": "scraped-2025-05-20-204",
       "shipName": "シーニック・エクリプスⅡ",
       "shipNameEn": "",
       "operator": "",
@@ -3710,7 +3727,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-18-204",
+      "id": "scraped-2025-05-18-205",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3728,7 +3745,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-17-205",
+      "id": "scraped-2025-05-17-206",
       "shipName": "ヘリテージ・アドベンチャラー",
       "shipNameEn": "",
       "operator": "",
@@ -3745,7 +3762,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-15-206",
+      "id": "scraped-2025-05-15-207",
       "shipName": "バイキング・オリオン",
       "shipNameEn": "",
       "operator": "",
@@ -3764,7 +3781,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-13-207",
+      "id": "scraped-2025-05-13-208",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -3781,7 +3798,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-13-208",
+      "id": "scraped-2025-05-13-209",
       "shipName": "セブンシーズ・マリナー",
       "shipNameEn": "",
       "operator": "",
@@ -3799,7 +3816,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-08-209",
+      "id": "scraped-2025-05-08-210",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3818,7 +3835,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-05-210",
+      "id": "scraped-2025-05-05-211",
       "shipName": "コスタ・セレーナ",
       "shipNameEn": "",
       "operator": "",
@@ -3837,7 +3854,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-04-211",
+      "id": "scraped-2025-05-04-212",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -3856,7 +3873,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-05-03-212",
+      "id": "scraped-2025-05-03-213",
       "shipName": "アザマラ・パシュート",
       "shipNameEn": "",
       "operator": "",
@@ -3875,7 +3892,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-30-213",
+      "id": "scraped-2025-04-30-214",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3894,7 +3911,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-29-214",
+      "id": "scraped-2025-04-29-215",
       "shipName": "コスタ・セレーナ",
       "shipNameEn": "",
       "operator": "",
@@ -3913,7 +3930,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-25-215",
+      "id": "scraped-2025-04-25-216",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -3931,7 +3948,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-23-216",
+      "id": "scraped-2025-04-23-217",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -3950,7 +3967,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-21-217",
+      "id": "scraped-2025-04-21-218",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -3969,7 +3986,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-19-218",
+      "id": "scraped-2025-04-19-219",
       "shipName": "シルバー・ミューズ",
       "shipNameEn": "",
       "operator": "",
@@ -3988,7 +4005,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-17-219",
+      "id": "scraped-2025-04-17-220",
       "shipName": "アイーダ・ステラ",
       "shipNameEn": "",
       "operator": "",
@@ -4007,7 +4024,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-16-220",
+      "id": "scraped-2025-04-16-221",
       "shipName": "カーニバル・ルミノーザ",
       "shipNameEn": "",
       "operator": "",
@@ -4026,7 +4043,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-14-221",
+      "id": "scraped-2025-04-14-222",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -4045,7 +4062,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-13-222",
+      "id": "scraped-2025-04-13-223",
       "shipName": "リビエラ",
       "shipNameEn": "",
       "operator": "",
@@ -4064,7 +4081,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-12-223",
+      "id": "scraped-2025-04-12-224",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4083,7 +4100,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-09-224",
+      "id": "scraped-2025-04-09-225",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -4102,7 +4119,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-06-225",
+      "id": "scraped-2025-04-06-226",
       "shipName": "シルバー・ウィスパー",
       "shipNameEn": "",
       "operator": "",
@@ -4121,7 +4138,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-06-226",
+      "id": "scraped-2025-04-06-227",
       "shipName": "アザマラ・パシュート",
       "shipNameEn": "",
       "operator": "",
@@ -4140,7 +4157,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-05-227",
+      "id": "scraped-2025-04-05-228",
       "shipName": "シルバー・ミューズ",
       "shipNameEn": "",
       "operator": "",
@@ -4159,7 +4176,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-03-228",
+      "id": "scraped-2025-04-03-229",
       "shipName": "アイーダ・ステラ",
       "shipNameEn": "",
       "operator": "",
@@ -4178,7 +4195,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-04-01-229",
+      "id": "scraped-2025-04-01-230",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4197,7 +4214,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-30-230",
+      "id": "scraped-2025-03-30-231",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -4216,7 +4233,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-26-231",
+      "id": "scraped-2025-03-26-232",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -4235,7 +4252,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-23-232",
+      "id": "scraped-2025-03-23-233",
       "shipName": "シルバー・ウィスパー",
       "shipNameEn": "",
       "operator": "",
@@ -4254,7 +4271,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-22-233",
+      "id": "scraped-2025-03-22-234",
       "shipName": "シルバー・ミューズ",
       "shipNameEn": "",
       "operator": "",
@@ -4273,7 +4290,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-18-234",
+      "id": "scraped-2025-03-18-235",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -4292,7 +4309,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-16-235",
+      "id": "scraped-2025-03-16-236",
       "shipName": "ノールダム",
       "shipNameEn": "",
       "operator": "",
@@ -4311,7 +4328,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-11-236",
+      "id": "scraped-2025-03-11-237",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4328,7 +4345,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-09-237",
+      "id": "scraped-2025-03-09-238",
       "shipName": "オイローパ２",
       "shipNameEn": "",
       "operator": "",
@@ -4346,7 +4363,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-05-238",
+      "id": "scraped-2025-03-05-239",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4363,7 +4380,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-05-239",
+      "id": "scraped-2025-03-05-240",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -4382,7 +4399,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-03-240",
+      "id": "scraped-2025-03-03-241",
       "shipName": "ノルウェージャン・スカイ",
       "shipNameEn": "",
       "operator": "",
@@ -4401,7 +4418,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-03-02-241",
+      "id": "scraped-2025-03-02-242",
       "shipName": "ノールダム",
       "shipNameEn": "",
       "operator": "",
@@ -4419,7 +4436,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-02-19-242",
+      "id": "scraped-2025-02-19-243",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4438,7 +4455,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-02-12-243",
+      "id": "scraped-2025-02-12-244",
       "shipName": "リビエラ",
       "shipNameEn": "",
       "operator": "",
@@ -4457,7 +4474,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-01-27-244",
+      "id": "scraped-2025-01-27-245",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4476,7 +4493,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-01-21-245",
+      "id": "scraped-2025-01-21-246",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4494,7 +4511,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2025-01-13-246",
+      "id": "scraped-2025-01-13-247",
       "shipName": "シルバー・ドーン",
       "shipNameEn": "",
       "operator": "",
@@ -4513,7 +4530,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-12-13-247",
+      "id": "scraped-2024-12-13-248",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4532,7 +4549,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-12-10-248",
+      "id": "scraped-2024-12-10-249",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4547,7 +4564,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-12-07-249",
+      "id": "scraped-2024-12-07-250",
       "shipName": "三井オーシャンフジ",
       "shipNameEn": "",
       "operator": "",
@@ -4566,7 +4583,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-12-04-250",
+      "id": "scraped-2024-12-04-251",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4585,7 +4602,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-11-26-251",
+      "id": "scraped-2024-11-26-252",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -4604,7 +4621,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-11-23-252",
+      "id": "scraped-2024-11-23-253",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4623,7 +4640,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-11-14-253",
+      "id": "scraped-2024-11-14-254",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4642,7 +4659,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-11-06-254",
+      "id": "scraped-2024-11-06-255",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -4660,7 +4677,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-11-05-255",
+      "id": "scraped-2024-11-05-256",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4679,7 +4696,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-11-04-256",
+      "id": "scraped-2024-11-04-257",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -4698,7 +4715,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-11-01-257",
+      "id": "scraped-2024-11-01-258",
       "shipName": "コーラル・プリンセス",
       "shipNameEn": "",
       "operator": "",
@@ -4716,7 +4733,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-31-258",
+      "id": "scraped-2024-10-31-259",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4734,7 +4751,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-29-259",
+      "id": "scraped-2024-10-29-260",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -4753,7 +4770,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-27-260",
+      "id": "scraped-2024-10-27-261",
       "shipName": "ノールダム",
       "shipNameEn": "",
       "operator": "",
@@ -4772,7 +4789,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-23-261",
+      "id": "scraped-2024-10-23-262",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -4791,7 +4808,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-22-262",
+      "id": "scraped-2024-10-22-263",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4810,7 +4827,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-18-263",
+      "id": "scraped-2024-10-18-264",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -4829,7 +4846,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-15-264",
+      "id": "scraped-2024-10-15-265",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -4848,7 +4865,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-13-265",
+      "id": "scraped-2024-10-13-266",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4866,7 +4883,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-06-266",
+      "id": "scraped-2024-10-06-267",
       "shipName": "セブンシーズ・エクスプローラー",
       "shipNameEn": "",
       "operator": "",
@@ -4885,7 +4902,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-03-267",
+      "id": "scraped-2024-10-03-268",
       "shipName": "バイキング・オリオン",
       "shipNameEn": "",
       "operator": "",
@@ -4904,7 +4921,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-02-268",
+      "id": "scraped-2024-10-02-269",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4923,7 +4940,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-10-01-269",
+      "id": "scraped-2024-10-01-270",
       "shipName": "シルバー・ノヴァ",
       "shipNameEn": "",
       "operator": "",
@@ -4942,7 +4959,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-09-27-270",
+      "id": "scraped-2024-09-27-271",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -4960,7 +4977,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-09-26-271",
+      "id": "scraped-2024-09-26-272",
       "shipName": "シルバー・ミューズ",
       "shipNameEn": "",
       "operator": "",
@@ -4979,7 +4996,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-09-20-272",
+      "id": "scraped-2024-09-20-273",
       "shipName": "コーラル・ジオグラファー",
       "shipNameEn": "",
       "operator": "",
@@ -4998,7 +5015,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-09-18-273",
+      "id": "scraped-2024-09-18-274",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -5017,7 +5034,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-09-17-274",
+      "id": "scraped-2024-09-17-275",
       "shipName": "コーラル・ジオグラファー",
       "shipNameEn": "",
       "operator": "",
@@ -5032,7 +5049,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-09-09-275",
+      "id": "scraped-2024-09-09-276",
       "shipName": "MSCベリッシマ",
       "shipNameEn": "",
       "operator": "",
@@ -5051,7 +5068,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-09-01-276",
+      "id": "scraped-2024-09-01-277",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -5070,7 +5087,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-08-04-277",
+      "id": "scraped-2024-08-04-278",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -5089,7 +5106,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-07-29-278",
+      "id": "scraped-2024-07-29-279",
       "shipName": "ブルードリームメロディ",
       "shipNameEn": "",
       "operator": "",
@@ -5108,7 +5125,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-07-27-279",
+      "id": "scraped-2024-07-27-280",
       "shipName": "飛鳥Ⅱ",
       "shipNameEn": "",
       "operator": "",
@@ -5127,7 +5144,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-07-24-280",
+      "id": "scraped-2024-07-24-281",
       "shipName": "飛鳥Ⅱ",
       "shipNameEn": "",
       "operator": "",
@@ -5142,7 +5159,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-07-22-281",
+      "id": "scraped-2024-07-22-282",
       "shipName": "飛鳥Ⅱ",
       "shipNameEn": "",
       "operator": "",
@@ -5161,7 +5178,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-07-17-282",
+      "id": "scraped-2024-07-17-283",
       "shipName": "ザ・ワールド",
       "shipNameEn": "",
       "operator": "",
@@ -5180,7 +5197,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-07-15-283",
+      "id": "scraped-2024-07-15-284",
       "shipName": "にっぽん丸",
       "shipNameEn": "",
       "operator": "",
@@ -5195,7 +5212,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-07-07-284",
+      "id": "scraped-2024-07-07-285",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -5214,7 +5231,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-06-23-285",
+      "id": "scraped-2024-06-23-286",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -5233,7 +5250,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-06-21-286",
+      "id": "scraped-2024-06-21-287",
       "shipName": "ハンセアティック・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -5251,7 +5268,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-06-09-287",
+      "id": "scraped-2024-06-09-288",
       "shipName": "バイキング・エデン",
       "shipNameEn": "",
       "operator": "",
@@ -5270,7 +5287,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-05-27-288",
+      "id": "scraped-2024-05-27-289",
       "shipName": "ヘリテージ・アドベンチャラー",
       "shipNameEn": "",
       "operator": "",
@@ -5285,7 +5302,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-05-26-289",
+      "id": "scraped-2024-05-26-290",
       "shipName": "ノルウェージャン・スピリット",
       "shipNameEn": "",
       "operator": "",
@@ -5304,7 +5321,7 @@
       "type": "クルーズ客船"
     },
     {
-      "id": "scraped-2024-05-24-290",
+      "id": "scraped-2024-05-24-291",
       "shipName": "クイーン・エリザベス",
       "shipNameEn": "",
       "operator": "",
@@ -5315,25 +5332,6 @@
       "departureTime": "19:00",
       "previousPort": "油津",
       "nextPort": "函館",
-      "grossTonnage": "",
-      "passengers": 0,
-      "length": "",
-      "builtYear": 0,
-      "flag": "🚢",
-      "type": "クルーズ客船"
-    },
-    {
-      "id": "scraped-2024-05-14-291",
-      "shipName": "クイーン・エリザベス",
-      "shipNameEn": "",
-      "operator": "",
-      "terminal": "東京国際クルーズターミナル",
-      "arrivalDate": "2024-05-14",
-      "departureDate": "2024-05-14",
-      "arrivalTime": "05:30",
-      "departureTime": "19:00",
-      "previousPort": "清水",
-      "nextPort": "鹿児島",
       "grossTonnage": "",
       "passengers": 0,
       "length": "",
