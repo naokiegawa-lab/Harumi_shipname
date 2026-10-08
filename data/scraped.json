@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-07T22:41:32.097Z",
+  "lastUpdated": "2026-10-08T04:26:03.548Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -570,7 +570,7 @@
       "shipName": "三井オーシャンサクラ",
       "shipNameEn": "",
       "operator": "",
-      "terminal": "八丈島大洗横浜",
+      "terminal": "八丈島大洗横浜初寄港",
       "arrivalDate": "2026-11-01",
       "departureDate": "2026-11-01",
       "grossTonnage": "",
