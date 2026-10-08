@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-08T04:26:03.548Z",
+  "lastUpdated": "2026-10-08T12:48:00.055Z",
   "source": "scraper",
   "arrivals": [
     {
@@ -853,6 +853,8 @@
       "departureDate": "2026-10-10",
       "arrivalTime": "06:30",
       "departureTime": "19:00",
+      "previousPort": "ダッチハー",
+      "nextPort": "バー広島",
       "grossTonnage": "",
       "passengers": 0,
       "length": "",
@@ -5313,25 +5315,6 @@
       "departureTime": "19:00",
       "previousPort": "仙台",
       "nextPort": "清水",
-      "grossTonnage": "",
-      "passengers": 0,
-      "length": "",
-      "builtYear": 0,
-      "flag": "🚢",
-      "type": "クルーズ客船"
-    },
-    {
-      "id": "scraped-2024-05-24-291",
-      "shipName": "クイーン・エリザベス",
-      "shipNameEn": "",
-      "operator": "",
-      "terminal": "東京国際クルーズターミナル",
-      "arrivalDate": "2024-05-24",
-      "departureDate": "2024-05-24",
-      "arrivalTime": "05:30",
-      "departureTime": "19:00",
-      "previousPort": "油津",
-      "nextPort": "函館",
       "grossTonnage": "",
       "passengers": 0,
       "length": "",
